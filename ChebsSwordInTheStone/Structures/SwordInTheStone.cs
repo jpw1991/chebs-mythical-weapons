@@ -5,7 +5,7 @@ using Logger = Jotunn.Logger;
 
 namespace ChebsSwordInTheStone.Structures
 {
-    public class SwordInTheStone : MonoBehaviour
+    public class SwordInTheStone : Container
     {
         public const string PrefabName = "ChebGonaz_SwordInTheStone.prefab";
         
@@ -34,6 +34,33 @@ namespace ChebsSwordInTheStone.Structures
             config.Enabled = false;
 
             return customPiece;
+        }
+        
+        public new bool Interact(Humanoid character, bool hold, bool alt)
+        {
+            if (!TryGetComponent(out ZNetView zNetView))
+            {
+                Logger.LogError("SwordInTheStone: Failed to get ZNetView");
+                return true;
+            }
+            
+            var playerId = Game.instance.GetPlayerProfile().GetPlayerID();
+
+            var player = Player.GetPlayer(playerId);
+            if (player == null)
+            {
+                Logger.LogError("SwordInTheStone: Failed to get player");
+                return true;
+            }
+
+            if (player.GetSkillLevel(Skills.SkillType.Swords) < 100)
+            {
+                character.Message(MessageHud.MessageType.Center, "$chebgonaz_swordinthestone_unworthy");
+                return true;
+            }
+            
+            zNetView.InvokeRPC("RequestOpen", playerId);
+            return true;
         }
     }
 }
