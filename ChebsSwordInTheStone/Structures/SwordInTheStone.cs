@@ -1,6 +1,7 @@
 using Jotunn.Configs;
 using Jotunn.Entities;
 using UnityEngine;
+using Logger = Jotunn.Logger;
 
 namespace ChebsSwordInTheStone.Structures
 {
@@ -25,7 +26,7 @@ namespace ChebsSwordInTheStone.Structures
             var customPiece = new CustomPiece(prefab, false, config);
             if (customPiece.PiecePrefab == null)
             {
-                Jotunn.Logger.LogError($"AddCustomPieces: {PrefabName}'s PiecePrefab is null!");
+                Logger.LogError($"AddCustomPieces: {PrefabName}'s PiecePrefab is null!");
                 return null;
             }
 

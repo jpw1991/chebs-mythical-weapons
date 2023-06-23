@@ -119,7 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\Excaliber.cs" />
+    <Compile Include="Items\Excalibur.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ChebsSwordInTheStone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

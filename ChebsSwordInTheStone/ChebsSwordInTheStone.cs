@@ -6,6 +6,7 @@ using ChebsSwordInTheStone.Items;
 using ChebsSwordInTheStone.Structures;
 using ChebsValheimLibrary;
 using HarmonyLib;
+using Jotunn;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
@@ -15,7 +16,7 @@ using Paths = BepInEx.Paths;
 namespace ChebsSwordInTheStone
 {
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-    [BepInDependency(Jotunn.Main.ModGuid)]
+    [BepInDependency(Main.ModGuid)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
     internal class ChebsSwordInTheStone : BaseUnityPlugin
     {
@@ -26,7 +27,7 @@ namespace ChebsSwordInTheStone
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly System.Version ChebsValheimLibraryVersion = new("2.0.0");
+        public readonly Version ChebsValheimLibraryVersion = new("2.0.0");
 
         private readonly Harmony harmony = new(PluginGuid);
         
@@ -35,7 +36,7 @@ namespace ChebsSwordInTheStone
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
-        private Excaliber _excaliber = new();
+        private Excalibur _excalibur = new();
 
         private void Awake()
         {
@@ -62,7 +63,7 @@ namespace ChebsSwordInTheStone
                                              "reasons. If you have problems with lag it might also help to switch" +
                                              "this setting on."));
 
-            // todo: excaliber
+            // todo: excalibur
         }
 
         private void SetupWatcher()
@@ -85,7 +86,7 @@ namespace ChebsSwordInTheStone
                 Logger.LogInfo("Read updated config values");
                 Config.Reload();
 
-                // todo update excaliber recipe
+                // todo update excalibur recipe
             }
             catch (Exception exc)
             {
@@ -102,8 +103,8 @@ namespace ChebsSwordInTheStone
             try
             {
                 // sword
-                var excaliberPrefab = Base.LoadPrefabFromBundle(_excaliber.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
-                ItemManager.Instance.AddItem(_excaliber.GetCustomItemFromPrefab(excaliberPrefab));
+                var excaliburPrefab = Base.LoadPrefabFromBundle(_excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                ItemManager.Instance.AddItem(_excalibur.GetCustomItemFromPrefab(excaliburPrefab));
 
                 // stone
                 var swordInTheStonePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PrefabName);

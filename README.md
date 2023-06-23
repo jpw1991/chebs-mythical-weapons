@@ -1,6 +1,6 @@
 # Cheb's Sword in the Stone
 
-Cheb's Sword in the Stone adds a powerful one-handed sword called Excaliber to Valheim. This sword must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
+Cheb's Sword in the Stone adds a powerful one-handed sword called Excalibur to Valheim. This sword must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
 
 This mod was commissioned by Discord user Mintymintos. If you would like me to create a mod for you, please get in touch.
 
