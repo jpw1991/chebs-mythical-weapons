@@ -3,15 +3,15 @@ using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
 
-namespace JotunnModStub
+namespace ChebsSwordInTheStone
 {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid)]
     //[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
-    internal class JotunnModStub : BaseUnityPlugin
+    internal class ChebsSwordInTheStone : BaseUnityPlugin
     {
         public const string PluginGUID = "com.jotunn.jotunnmodstub";
-        public const string PluginName = "JotunnModStub";
+        public const string PluginName = "ChebsSwordInTheStone";
         public const string PluginVersion = "0.0.1";
         
         // Use this class to add your own localization to the game

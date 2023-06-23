@@ -373,3 +373,10 @@ Environment.props
 
 # not the generated dll for thunderstore
 */Package/plugins/*
+
+# other
+*.unitypackage
+*.backup
+ChebsSwordInTheStoneUnity/Assets
+ChebsSwordInTheStoneUnity/ProjectSettings/SceneTemplateSettings.json
+ChebsSwordInTheStoneUnity/ProjectSettings/TimelineSettings.asset

@@ -1,0 +1,9 @@
+﻿{
+  "name": "ChebsSwordInTheStone",
+  "description": "",
+  "version_number": "0.0.1",
+  "website_url": "https://github.com/jpw1991/chebs-sword-in-the-stone",
+  "dependencies": [
+    "ValheimModding-Jotunn-2.11.2",
+  ]
+}
