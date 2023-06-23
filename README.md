@@ -70,6 +70,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 ## Special Thanks
 
 - MintyMintos for commissioning the mod.
+- [System 6G](https://opengameart.org/users/system-g6) for providing the [Medieval Weapons Pack](https://opengameart.org/content/medieval-weapon-pack) from which I took the Excalibur model.
 
 ## Changelog
 
