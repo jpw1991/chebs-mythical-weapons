@@ -27,7 +27,7 @@ namespace ChebsSwordInTheStone
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly Version ChebsValheimLibraryVersion = new("2.0.0");
+        public readonly System.Version ChebsValheimLibraryVersion = new("2.0.0");
 
         private readonly Harmony harmony = new(PluginGuid);
         
@@ -36,7 +36,7 @@ namespace ChebsSwordInTheStone
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
-        private Excalibur _excalibur = new();
+        public static ExcaliburItem Excalibur = new();
 
         private void Awake()
         {
@@ -103,14 +103,13 @@ namespace ChebsSwordInTheStone
             try
             {
                 // sword
-                var excaliburPrefab = Base.LoadPrefabFromBundle(_excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
-                ItemManager.Instance.AddItem(_excalibur.GetCustomItemFromPrefab(excaliburPrefab));
+                var excaliburPrefab = Base.LoadPrefabFromBundle(Excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                ItemManager.Instance.AddItem(Excalibur.GetCustomItemFromPrefab(excaliburPrefab));
 
                 // stone
                 var swordInTheStonePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PrefabName);
                 swordInTheStonePrefab.AddComponent<SwordInTheStone>();
-                PieceManager.Instance.AddPiece(
-                    SwordInTheStone.GetCustomPieceFromPrefab(swordInTheStonePrefab,
+                PieceManager.Instance.AddPiece(SwordInTheStone.GetCustomPieceFromPrefab(swordInTheStonePrefab,
                         chebgonazAssetBundle.LoadAsset<Sprite>(SwordInTheStone.IconName))
                 );
             }

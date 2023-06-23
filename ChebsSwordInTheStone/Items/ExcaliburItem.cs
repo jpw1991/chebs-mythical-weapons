@@ -2,7 +2,7 @@ using ChebsValheimLibrary.Items;
 
 namespace ChebsSwordInTheStone.Items
 {
-    public class Excalibur : Item
+    public class ExcaliburItem : Item
     {
         public override string ItemName => "ChebGonaz_Excalibur";
         public override string PrefabName => "ChebGonaz_Excalibur.prefab";

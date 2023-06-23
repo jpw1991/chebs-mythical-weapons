@@ -13,6 +13,8 @@ namespace ChebsSwordInTheStone.Structures
         public const string DescriptionLocalization = "$chebgonaz_swordinthestone_desc";
 
         public const string IconName = "chebgonaz_swordinthestone_icon.png";
+
+        public const string AlreadyLootedZDOKey = "ChebGonaz_ExcaliburLooted";
         
         public static CustomPiece GetCustomPieceFromPrefab(GameObject prefab, Sprite icon)
         {
@@ -20,7 +22,8 @@ namespace ChebsSwordInTheStone.Structures
             {
                 Name = NameLocalization,
                 Description = DescriptionLocalization,
-                Icon = icon
+                Icon = icon,
+                PieceTable = "_HammerPieceTable"
             };
 
             var customPiece = new CustomPiece(prefab, false, config);
@@ -36,31 +39,21 @@ namespace ChebsSwordInTheStone.Structures
             return customPiece;
         }
         
-        public new bool Interact(Humanoid character, bool hold, bool alt)
+        public bool AlreadyLooted
         {
-            if (!TryGetComponent(out ZNetView zNetView))
+            // store in the ZDO whether the sword has been looted or not
+            get => !TryGetComponent(out ZNetView zNetView) || zNetView.GetZDO().GetBool(AlreadyLootedZDOKey);
+            set
             {
-                Logger.LogError("SwordInTheStone: Failed to get ZNetView");
-                return true;
+                if (TryGetComponent(out ZNetView zNetView))
+                {
+                    zNetView.GetZDO().Set(AlreadyLootedZDOKey, value);
+                }
+                else
+                {
+                    Logger.LogError($"Cannot AlreadyLootedZDOKey to {value} because it has no ZNetView component.");
+                }
             }
-            
-            var playerId = Game.instance.GetPlayerProfile().GetPlayerID();
-
-            var player = Player.GetPlayer(playerId);
-            if (player == null)
-            {
-                Logger.LogError("SwordInTheStone: Failed to get player");
-                return true;
-            }
-
-            if (player.GetSkillLevel(Skills.SkillType.Swords) < 100)
-            {
-                character.Message(MessageHud.MessageType.Center, "$chebgonaz_swordinthestone_unworthy");
-                return true;
-            }
-            
-            zNetView.InvokeRPC("RequestOpen", playerId);
-            return true;
         }
     }
 }
