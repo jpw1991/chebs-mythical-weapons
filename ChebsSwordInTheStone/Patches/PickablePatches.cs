@@ -1,4 +1,3 @@
-using ChebsSwordInTheStone.Locations;
 using ChebsSwordInTheStone.Pickables;
 using HarmonyLib;
 using Jotunn;

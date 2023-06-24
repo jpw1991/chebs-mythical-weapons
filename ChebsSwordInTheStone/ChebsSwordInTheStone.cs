@@ -111,8 +111,6 @@ namespace ChebsSwordInTheStone
             {
                 Logger.LogInfo("Read updated config values");
                 Config.Reload();
-
-                // todo update excalibur recipe
             }
             catch (Exception exc)
             {
