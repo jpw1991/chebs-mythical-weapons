@@ -3,7 +3,8 @@ using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
 using ChebsSwordInTheStone.Items;
-using ChebsSwordInTheStone.Structures;
+using ChebsSwordInTheStone.Locations;
+using ChebsSwordInTheStone.Pickables;
 using ChebsValheimLibrary;
 using HarmonyLib;
 using Jotunn;
@@ -37,6 +38,8 @@ namespace ChebsSwordInTheStone
         public static ConfigEntry<int> SwordInTheStoneQuantity;
         public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome;
         public static ConfigEntry<int> SwordSkillRequired;
+        public static ConfigEntry<bool> ShowMapMarker;
+        public static ConfigEntry<Minimap.PinType> MapMarker;
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
@@ -60,7 +63,7 @@ namespace ChebsSwordInTheStone
         {
             Config.SaveOnConfigSet = true;
 
-            RadeonFriendly = Config.Bind("General (Client)", "RadeonFriendly",
+            RadeonFriendly = Config.Bind($"{GetType().Name} (Client)", "RadeonFriendly",
                 false, new ConfigDescription("ONLY set this to true if you have graphical issues with " +
                                              "the mod. It will disable all particle effects for the mod's prefabs " +
                                              "which seem to give users with Radeon cards trouble for unknown " +
@@ -68,7 +71,7 @@ namespace ChebsSwordInTheStone
                                              "this setting on."));
 
             SwordInTheStoneQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneQuantity",
-                3, new ConfigDescription(
+                30, new ConfigDescription(
                     "The amount of Sword in the Stone locations in the world.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
@@ -81,6 +84,12 @@ namespace ChebsSwordInTheStone
                 100, new ConfigDescription(
                     "The sword skill required to take Excalibur out of the stone.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            ShowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ShowMapMarker",
+                true, new ConfigDescription("Whether a Sword in the Stone will appear on the map or not (currently not working, will fix soon)."));
+            
+            MapMarker = Config.Bind($"{GetType().Name} (Client)", "MapMarker",
+                Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Sword in the Stone."));
         }
 
         private void SetupWatcher()
@@ -124,13 +133,13 @@ namespace ChebsSwordInTheStone
                 ItemManager.Instance.AddItem(Excalibur.GetCustomItemFromPrefab(excaliburPrefab));
 
                 // stone pickable
-                var swordInTheStonePickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PickablePrefabName);
-                swordInTheStonePickablePrefab.AddComponent<SwordInTheStone>();
+                var swordInTheStonePickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStonePickable.PickablePrefabName);
+                swordInTheStonePickablePrefab.AddComponent<SwordInTheStonePickable>();
                 PrefabManager.Instance.AddPrefab(swordInTheStonePickablePrefab);
                 
                 // stone location
-                var swordInTheStonePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PrefabName);
-
+                var swordInTheStoneLocationPrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStoneLocation.PrefabName);
+                swordInTheStoneLocationPrefab.AddComponent<SwordInTheStoneLocation>();
                 var swordInTheStoneConfig = new LocationConfig()
                 {
                     Biome = SwordInTheStoneLocationBiome.Value,
@@ -139,7 +148,7 @@ namespace ChebsSwordInTheStone
                     ExteriorRadius = 2f,
                     ClearArea = true,
                 };
-                var customLocation = new CustomLocation(swordInTheStonePrefab, false, swordInTheStoneConfig);
+                var customLocation = new CustomLocation(swordInTheStoneLocationPrefab, false, swordInTheStoneConfig);
                 ZoneManager.Instance.AddCustomLocation(customLocation); 
 
             }

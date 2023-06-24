@@ -122,10 +122,11 @@
   <ItemGroup>
     <Compile Include="Items\ExcaliburItem.cs" />
     <Compile Include="Patches\PickablePatches.cs" />
+    <Compile Include="Pickables\SwordInTheStonePickable.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ChebsSwordInTheStone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structures\SwordInTheStone.cs" />
+    <Compile Include="Locations\SwordInTheStoneLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

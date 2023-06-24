@@ -1,4 +1,5 @@
-using ChebsSwordInTheStone.Structures;
+using ChebsSwordInTheStone.Locations;
+using ChebsSwordInTheStone.Pickables;
 using HarmonyLib;
 using Jotunn;
 
@@ -7,11 +8,23 @@ namespace ChebsSwordInTheStone.Patches
     [HarmonyPatch(typeof(Pickable))]
     public class PickablePatches
     {
+        [HarmonyPatch(nameof(Pickable.Awake))]
+        [HarmonyPrefix]
+        static void AwakePrefix(Pickable __instance)
+        {
+            if (__instance.name.StartsWith(
+                    SwordInTheStonePickable.PickablePrefabName.Substring(0,
+                        SwordInTheStonePickable.PickablePrefabName.Length - 7)))
+            {
+                __instance.gameObject.AddComponent<SwordInTheStonePickable>();
+            }
+        }
+        
         [HarmonyPatch(nameof(Pickable.Interact))]
         [HarmonyPrefix]
          static bool Interact(Pickable __instance, Humanoid character, bool repeat, bool alt)
          {
-             if (!__instance.TryGetComponent(out SwordInTheStone _)) return true; // permit base method completion
+             if (!__instance.TryGetComponent(out SwordInTheStonePickable _)) return true; // permit base method completion
 
              var playerId = Game.instance.GetPlayerProfile().GetPlayerID();
 
