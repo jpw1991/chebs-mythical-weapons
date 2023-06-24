@@ -1,9 +1,9 @@
 ﻿{
   "name": "ChebsSwordInTheStone",
-  "description": "",
-  "version_number": "0.0.1",
+  "description": "Adds a powerful one-handed sword called Excalibur to Valheim. This sword must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.",
+  "version_number": "1.0.0",
   "website_url": "https://github.com/jpw1991/chebs-sword-in-the-stone",
   "dependencies": [
-    "ValheimModding-Jotunn-2.11.2",
+    "ValheimModding-Jotunn-2.11.2"
   ]
 }

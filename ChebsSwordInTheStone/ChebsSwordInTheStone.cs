@@ -7,6 +7,7 @@ using ChebsSwordInTheStone.Structures;
 using ChebsValheimLibrary;
 using HarmonyLib;
 using Jotunn;
+using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
 using Jotunn.Utils;
@@ -22,7 +23,7 @@ namespace ChebsSwordInTheStone
     {
         public const string PluginGuid = "com.chebgonaz.chebsswordinthestone";
         public const string PluginName = "ChebsSwordInTheStone";
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "1.0.0";
         
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -30,9 +31,11 @@ namespace ChebsSwordInTheStone
         public readonly System.Version ChebsValheimLibraryVersion = new("2.0.0");
 
         private readonly Harmony harmony = new(PluginGuid);
-        
+
         // if set to true, the particle effects that for some reason hurt radeon are dynamically disabled
         public static ConfigEntry<bool> RadeonFriendly;
+        public static ConfigEntry<int> SwordInTheStoneQuantity;
+        public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome;
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
@@ -64,6 +67,16 @@ namespace ChebsSwordInTheStone
                                              "this setting on."));
 
             // todo: excalibur
+            
+            SwordInTheStoneQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneQuantity",
+                3, new ConfigDescription(
+                    "The amount of Sword in the Stone locations in the world.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+
+            SwordInTheStoneLocationBiome = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneLocationBiome",
+                Heightmap.Biome.Meadows, new ConfigDescription(
+                    "The biome in which a Sword in the Stone can appear.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 
         private void SetupWatcher()
@@ -109,9 +122,15 @@ namespace ChebsSwordInTheStone
                 // stone
                 var swordInTheStonePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PrefabName);
                 swordInTheStonePrefab.AddComponent<SwordInTheStone>();
-                PieceManager.Instance.AddPiece(SwordInTheStone.GetCustomPieceFromPrefab(swordInTheStonePrefab,
-                        chebgonazAssetBundle.LoadAsset<Sprite>(SwordInTheStone.IconName))
-                );
+
+                var swordInTheStoneConfig = new LocationConfig()
+                {
+                    Biome = SwordInTheStoneLocationBiome.Value,
+                    Quantity = SwordInTheStoneQuantity.Value
+                };
+                var customLocation = new CustomLocation(swordInTheStonePrefab, true, swordInTheStoneConfig);
+                ZoneManager.Instance.AddCustomLocation(customLocation);
+
             }
             catch (Exception ex)
             {

@@ -1,53 +1,49 @@
-using Jotunn.Configs;
-using Jotunn.Entities;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
 namespace ChebsSwordInTheStone.Structures
 {
-    public class SwordInTheStone : Container
+    public class SwordInTheStone : MonoBehaviour
     {
         public const string PrefabName = "ChebGonaz_SwordInTheStone.prefab";
         
         public const string NameLocalization = "$chebgonaz_swordinthestone";
-        public const string DescriptionLocalization = "$chebgonaz_swordinthestone_desc";
 
-        public const string IconName = "chebgonaz_swordinthestone_icon.png";
+        public const string AlreadyLootedZdoKey = "ChebGonaz_ExcaliburLooted";
 
-        public const string AlreadyLootedZDOKey = "ChebGonaz_ExcaliburLooted";
-        
-        public static CustomPiece GetCustomPieceFromPrefab(GameObject prefab, Sprite icon)
+        private Container _container;
+        private GameObject _visual;
+
+        private void Awake()
         {
-            var config = new PieceConfig
-            {
-                Name = NameLocalization,
-                Description = DescriptionLocalization,
-                Icon = icon,
-                PieceTable = "_HammerPieceTable"
-            };
+            _container = gameObject.AddComponent<Container>();
+            _visual = transform.Find("New/Excalibur").gameObject;
+        }
 
-            var customPiece = new CustomPiece(prefab, false, config);
-            if (customPiece.PiecePrefab == null)
-            {
-                Logger.LogError($"AddCustomPieces: {PrefabName}'s PiecePrefab is null!");
-                return null;
-            }
-
-            // not player craftable
-            config.Enabled = false;
-
-            return customPiece;
+        public void Start()
+        {
+            _container.m_name = NameLocalization;
         }
         
+        private void FixedUpdate()
+        {
+            UpdateSword();
+        }
+        
+        public void UpdateSword()
+        {
+            _visual.SetActive(!AlreadyLooted);
+        }
+
         public bool AlreadyLooted
         {
             // store in the ZDO whether the sword has been looted or not
-            get => !TryGetComponent(out ZNetView zNetView) || zNetView.GetZDO().GetBool(AlreadyLootedZDOKey);
+            get => !TryGetComponent(out ZNetView zNetView) || zNetView.GetZDO().GetBool(AlreadyLootedZdoKey);
             set
             {
                 if (TryGetComponent(out ZNetView zNetView))
                 {
-                    zNetView.GetZDO().Set(AlreadyLootedZDOKey, value);
+                    zNetView.GetZDO().Set(AlreadyLootedZdoKey, value);
                 }
                 else
                 {
