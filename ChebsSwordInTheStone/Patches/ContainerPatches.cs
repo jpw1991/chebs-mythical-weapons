@@ -29,7 +29,7 @@ namespace ChebsSwordInTheStone.Patches
                 return false; // deny base method completion
             }
 
-            if (player.GetSkillLevel(Skills.SkillType.Swords) < 100)
+            if (player.GetSkillLevel(Skills.SkillType.Swords) < ChebsSwordInTheStone.SwordSkillRequired.Value)
             {
                 character.Message(MessageHud.MessageType.Center, "$chebgonaz_swordinthestone_unworthy");
                 return false; // deny base method completion

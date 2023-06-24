@@ -36,6 +36,7 @@ namespace ChebsSwordInTheStone
         public static ConfigEntry<bool> RadeonFriendly;
         public static ConfigEntry<int> SwordInTheStoneQuantity;
         public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome;
+        public static ConfigEntry<int> SwordSkillRequired;
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
@@ -66,8 +67,6 @@ namespace ChebsSwordInTheStone
                                              "reasons. If you have problems with lag it might also help to switch" +
                                              "this setting on."));
 
-            // todo: excalibur
-            
             SwordInTheStoneQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneQuantity",
                 3, new ConfigDescription(
                     "The amount of Sword in the Stone locations in the world.", null,
@@ -76,6 +75,11 @@ namespace ChebsSwordInTheStone
             SwordInTheStoneLocationBiome = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneLocationBiome",
                 Heightmap.Biome.Meadows, new ConfigDescription(
                     "The biome in which a Sword in the Stone can appear.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            SwordSkillRequired = Config.Bind($"{GetType().Name} (Server Synced)", "SwordSkillRequired",
+                100, new ConfigDescription(
+                    "The sword skill required to take Excalibur out of the stone.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 

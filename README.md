@@ -33,6 +33,7 @@ b) Write to me on [Discord](https://discord.com/invite/EB96ASQ).
 - Valheim
 - BepInEx
 - Jotunn
+- Cheb's Valheim Library (included)
 
 ## Installation (manual)
 
@@ -46,6 +47,7 @@ plugins/
 ├── chebsswordinthestone
 ├── chebsswordinthestone.manifest
 ├── ChebsSwordInTheStone.dll
+├── ChebsValheimLibrary.dll
 └── ... other mods ...
 ```
 
@@ -53,11 +55,15 @@ plugins/
 
 Detailed info in the [wiki](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki). Here's the short version:
 
-- to do
+- Adds a powerful sword called Excalibur to the game. Excalibur:
+	- Cannot be crafted.
+	- Suffers no durability loss.
+	- Deals 100 slashing damage and 50 spirit damage.
+- The sword must be found and taken from the stone. It requires 100 sword skill to remove the sword from the stone.
 
 ### Config
 
-**Attention:** To edit the config as described, the [Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) is the most user friendly way. This is a separate mod. Please download and install it.
+**Attention:** To edit the config, the [Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) is the most user friendly way. This is a separate mod. Please download and install it.
 
 Press **F1** to open the mod's configuration panel.
 

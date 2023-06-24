@@ -1,0 +1,3 @@
+[submodule "chebs-sword-in-the-stone.wiki"]
+	path = chebs-sword-in-the-stone.wiki
+	url = git@github.com:jpw1991/chebs-sword-in-the-stone.wiki.git
