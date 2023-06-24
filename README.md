@@ -79,6 +79,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
+23/06/2023 | 1.0.0 | Release
 23/06/2023 | 0.0.1   | First alpha version
 
 </details>
