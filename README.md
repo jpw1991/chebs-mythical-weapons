@@ -69,6 +69,10 @@ Press **F1** to open the mod's configuration panel.
 
 You can also edit the configs manually. Almost everything can be tweaked to your liking. For a complete list of all configuration options, please look [here](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki/Configs).
 
+### Known Issues
+
+- Quantity doesn't seem to be exact, rather approximate. This will hopefully be locked down and fixed in time.
+
 ## Source
 
 You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-stone).
@@ -86,7 +90,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
-23/06/2023 | 1.0.0 | Release
+24/06/2023 | 1.0.0 | Release
 23/06/2023 | 0.0.1   | First alpha version
 
 </details>

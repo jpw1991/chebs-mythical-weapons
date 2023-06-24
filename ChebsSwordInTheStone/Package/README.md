@@ -33,6 +33,7 @@ b) Write to me on [Discord](https://discord.com/invite/EB96ASQ).
 - Valheim
 - BepInEx
 - Jotunn
+- Cheb's Valheim Library (included)
 
 ## Installation (manual)
 
@@ -46,6 +47,7 @@ plugins/
 ├── chebsswordinthestone
 ├── chebsswordinthestone.manifest
 ├── ChebsSwordInTheStone.dll
+├── ChebsValheimLibrary.dll
 └── ... other mods ...
 ```
 
@@ -53,15 +55,23 @@ plugins/
 
 Detailed info in the [wiki](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki). Here's the short version:
 
-- to do
+- Adds a powerful sword called Excalibur to the game. Excalibur:
+	- Cannot be crafted.
+	- Suffers no durability loss.
+	- Deals 100 slashing damage and 50 spirit damage.
+- The sword must be found and taken from the stone. It requires 100 sword skill to remove the sword from the stone.
 
 ### Config
 
-**Attention:** To edit the config as described, the [Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) is the most user friendly way. This is a separate mod. Please download and install it.
+**Attention:** To edit the config, the [Configuration Manager](https://github.com/BepInEx/BepInEx.ConfigurationManager/releases) is the most user friendly way. This is a separate mod. Please download and install it.
 
 Press **F1** to open the mod's configuration panel.
 
 You can also edit the configs manually. Almost everything can be tweaked to your liking. For a complete list of all configuration options, please look [here](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki/Configs).
+
+### Known Issues
+
+- Quantity doesn't seem to be exact, rather approximate. This will hopefully be locked down and fixed in time.
 
 ## Source
 
@@ -71,6 +81,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
 - MintyMintos for commissioning the mod.
 - [System 6G](https://opengameart.org/users/system-g6) for providing the [Medieval Weapons Pack](https://opengameart.org/content/medieval-weapon-pack) from which I took the Excalibur model.
+- [qubodup](https://opengameart.org/users/qubodup) for the [Wisdom Magic Sound Effect Pack](https://opengameart.org/content/wisdom-magic) which I use for the looting sound effect. [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) stipulates I must indicate whether changes were made: no changes were made.
 
 ## Changelog
 
@@ -79,7 +90,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
-23/06/2023 | 1.0.0 | Release
+24/06/2023 | 1.0.0 | Release
 23/06/2023 | 0.0.1   | First alpha version
 
 </details>
