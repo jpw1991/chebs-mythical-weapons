@@ -121,7 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\ExcaliburItem.cs" />
-    <Compile Include="Patches\ContainerPatches.cs" />
+    <Compile Include="Patches\PickablePatches.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ChebsSwordInTheStone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

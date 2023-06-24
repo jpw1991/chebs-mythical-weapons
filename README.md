@@ -77,6 +77,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
 - MintyMintos for commissioning the mod.
 - [System 6G](https://opengameart.org/users/system-g6) for providing the [Medieval Weapons Pack](https://opengameart.org/content/medieval-weapon-pack) from which I took the Excalibur model.
+- [qubodup](https://opengameart.org/users/qubodup) for the [Wisdom Magic Sound Effect Pack](https://opengameart.org/content/wisdom-magic) which I use for the looting sound effect. [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) stipulates I must indicate whether changes were made: no changes were made.
 
 ## Changelog
 

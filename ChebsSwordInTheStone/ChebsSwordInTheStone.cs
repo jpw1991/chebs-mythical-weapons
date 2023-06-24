@@ -123,17 +123,24 @@ namespace ChebsSwordInTheStone
                 var excaliburPrefab = Base.LoadPrefabFromBundle(Excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
                 ItemManager.Instance.AddItem(Excalibur.GetCustomItemFromPrefab(excaliburPrefab));
 
-                // stone
+                // stone pickable
+                var swordInTheStonePickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PickablePrefabName);
+                swordInTheStonePickablePrefab.AddComponent<SwordInTheStone>();
+                PrefabManager.Instance.AddPrefab(swordInTheStonePickablePrefab);
+                
+                // stone location
                 var swordInTheStonePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStone.PrefabName);
-                swordInTheStonePrefab.AddComponent<SwordInTheStone>();
 
                 var swordInTheStoneConfig = new LocationConfig()
                 {
                     Biome = SwordInTheStoneLocationBiome.Value,
-                    Quantity = SwordInTheStoneQuantity.Value
+                    Quantity = SwordInTheStoneQuantity.Value,
+                    Priotized = true,
+                    ExteriorRadius = 2f,
+                    ClearArea = true,
                 };
-                var customLocation = new CustomLocation(swordInTheStonePrefab, true, swordInTheStoneConfig);
-                ZoneManager.Instance.AddCustomLocation(customLocation);
+                var customLocation = new CustomLocation(swordInTheStonePrefab, false, swordInTheStoneConfig);
+                ZoneManager.Instance.AddCustomLocation(customLocation); 
 
             }
             catch (Exception ex)
