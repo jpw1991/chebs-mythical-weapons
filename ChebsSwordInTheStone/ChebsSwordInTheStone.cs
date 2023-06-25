@@ -24,7 +24,7 @@ namespace ChebsSwordInTheStone
     {
         public const string PluginGuid = "com.chebgonaz.chebsswordinthestone";
         public const string PluginName = "ChebsSwordInTheStone";
-        public const string PluginVersion = "1.0.1";
+        public const string PluginVersion = "1.1.0";
         
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -90,6 +90,8 @@ namespace ChebsSwordInTheStone
             
             MapMarker = Config.Bind($"{GetType().Name} (Client)", "MapMarker",
                 Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Sword in the Stone."));
+            
+            Excalibur.CreateConfigs(this);
         }
 
         private void SetupWatcher()
