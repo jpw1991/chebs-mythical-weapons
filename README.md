@@ -90,6 +90,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
+25/06/2023 | 1.0.1 | Permit upgrading of Excalibur
 24/06/2023 | 1.0.0 | Release
 23/06/2023 | 0.0.1   | First alpha version
 
