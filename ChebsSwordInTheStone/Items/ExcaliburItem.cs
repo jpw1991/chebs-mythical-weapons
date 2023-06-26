@@ -62,7 +62,7 @@ namespace ChebsSwordInTheStone.Items
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
             DeflectionForcePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "DeflectionForcePerLevel",
                 0f, new ConfigDescription(
-                    "Excalibur's blocking power increase per level.", null,
+                    "Excalibur's deflection force increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 
