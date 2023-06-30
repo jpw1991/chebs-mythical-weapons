@@ -43,7 +43,7 @@ jobs:
           name: ${{ env.name }}
           version: ${{ github.ref_name }} # This is the tag that was created in the release
           description: ${{ env.desc }}
-          token: ${{ secrets.TS_KEY }} 
+          token: ${{ secrets.TS_KEY }}
           deps: ${{ env.dependencies }}
           categories: ${{ env.categories }}
           file: ${{ env.name }}.${{ github.ref_name }}.zip
