@@ -90,6 +90,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
+30/06/2023 | 1.1.1 | Implement the differing material requirements per level of upgrade as requested
 25/06/2023 | 1.1.0 | Expose most sword stats to config
 25/06/2023 | 1.0.1 | Permit upgrading of Excalibur
 24/06/2023 | 1.0.0 | Release
