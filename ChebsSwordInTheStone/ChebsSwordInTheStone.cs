@@ -35,15 +35,16 @@ namespace ChebsSwordInTheStone
 
         // if set to true, the particle effects that for some reason hurt radeon are dynamically disabled
         public static ConfigEntry<bool> RadeonFriendly;
-        public static ConfigEntry<int> SwordInTheStoneQuantity;
-        public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome;
-        public static ConfigEntry<int> SwordSkillRequired;
-        public static ConfigEntry<bool> ShowMapMarker;
-        public static ConfigEntry<Minimap.PinType> MapMarker;
+        public static ConfigEntry<int> SwordInTheStoneQuantity, ApolloBowQuantity;
+        public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome, ApolloBowLocationBiome;
+        public static ConfigEntry<int> SwordSkillRequired, BowSkillRequired;
+        public static ConfigEntry<bool> ShowMapMarker, ApolloBowShowMapMarker;
+        public static ConfigEntry<Minimap.PinType> MapMarker, ApolloBowMapMarker;
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
         public static ExcaliburItem Excalibur = new();
+        public static ApolloBowItem ApolloBow = new();
 
         private void Awake()
         {
@@ -70,6 +71,7 @@ namespace ChebsSwordInTheStone
                                              "reasons. If you have problems with lag it might also help to switch" +
                                              "this setting on."));
 
+            #region SwordInTheStone
             SwordInTheStoneQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneQuantity",
                 30, new ConfigDescription(
                     "The amount of Sword in the Stone locations in the world.", null,
@@ -86,12 +88,37 @@ namespace ChebsSwordInTheStone
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
             
             ShowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ShowMapMarker",
-                true, new ConfigDescription("Whether a Sword in the Stone will appear on the map or not (currently not working, will fix soon)."));
+                true, new ConfigDescription("Whether a Sword in the Stone will appear on the map or not."));
             
             MapMarker = Config.Bind($"{GetType().Name} (Client)", "MapMarker",
                 Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Sword in the Stone."));
             
             Excalibur.CreateConfigs(this);
+            #endregion
+            #region ApolloBow
+            ApolloBowQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "ApolloBowQuantity",
+                30, new ConfigDescription(
+                    "The amount of Statue of Apollo locations in the world.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+
+            ApolloBowLocationBiome = Config.Bind($"{GetType().Name} (Server Synced)", "ApolloBowLocationBiome",
+                Heightmap.Biome.Meadows, new ConfigDescription(
+                    "The biome in which a Statue of Apollo can appear.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            BowSkillRequired = Config.Bind($"{GetType().Name} (Server Synced)", "BowSkillRequired",
+                100, new ConfigDescription(
+                    "The bow skill required to take Apollo's Bow from the statue.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            ApolloBowShowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ApolloBowShowMapMarker",
+                true, new ConfigDescription("Whether a Statue of Apollo will appear on the map or not."));
+            
+            ApolloBowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ApolloBowMapMarker",
+                Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Statue of Apollo."));
+            
+            ApolloBow.CreateConfigs(this);
+            #endregion
         }
 
         private void SetupWatcher()
@@ -128,29 +155,54 @@ namespace ChebsSwordInTheStone
             var chebgonazAssetBundle = AssetUtils.LoadAssetBundle(assetBundlePath);
             try
             {
-                // sword
-                var excaliburPrefab = Base.LoadPrefabFromBundle(Excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
-                ItemManager.Instance.AddItem(Excalibur.GetCustomItemFromPrefab(excaliburPrefab));
-
-                // stone pickable
-                var swordInTheStonePickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStonePickable.PickablePrefabName);
-                swordInTheStonePickablePrefab.AddComponent<SwordInTheStonePickable>();
-                PrefabManager.Instance.AddPrefab(swordInTheStonePickablePrefab);
-                
-                // stone location
-                var swordInTheStoneLocationPrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStoneLocation.PrefabName);
-                swordInTheStoneLocationPrefab.AddComponent<SwordInTheStoneLocation>();
-                var swordInTheStoneConfig = new LocationConfig()
                 {
-                    Biome = SwordInTheStoneLocationBiome.Value,
-                    Quantity = SwordInTheStoneQuantity.Value,
-                    Priotized = true,
-                    ExteriorRadius = 2f,
-                    ClearArea = true,
-                };
-                var customLocation = new CustomLocation(swordInTheStoneLocationPrefab, false, swordInTheStoneConfig);
-                ZoneManager.Instance.AddCustomLocation(customLocation); 
+                    // sword
+                    var excaliburPrefab = Base.LoadPrefabFromBundle(Excalibur.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(Excalibur.GetCustomItemFromPrefab(excaliburPrefab));
 
+                    // stone pickable
+                    var swordInTheStonePickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStonePickable.PickablePrefabName);
+                    swordInTheStonePickablePrefab.AddComponent<SwordInTheStonePickable>();
+                    PrefabManager.Instance.AddPrefab(swordInTheStonePickablePrefab);
+                
+                    // stone location
+                    var swordInTheStoneLocationPrefab = chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStoneLocation.PrefabName);
+                    swordInTheStoneLocationPrefab.AddComponent<SwordInTheStoneLocation>();
+                    var swordInTheStoneConfig = new LocationConfig()
+                    {
+                        Biome = SwordInTheStoneLocationBiome.Value,
+                        Quantity = SwordInTheStoneQuantity.Value,
+                        Priotized = true,
+                        ExteriorRadius = 2f,
+                        ClearArea = true,
+                    };
+                    var customLocation = new CustomLocation(swordInTheStoneLocationPrefab, false, swordInTheStoneConfig);
+                    ZoneManager.Instance.AddCustomLocation(customLocation);
+                }
+                {
+                    // bow
+                    var apolloBowPrefab = Base.LoadPrefabFromBundle(ApolloBow.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(ApolloBow.GetCustomItemFromPrefab(apolloBowPrefab));
+                
+                    // bow pickable
+                    var bowPickablePrefab = chebgonazAssetBundle.LoadAsset<GameObject>(ApolloStatuePickable.PickablePrefabName);
+                    bowPickablePrefab.AddComponent<ApolloStatuePickable>();
+                    PrefabManager.Instance.AddPrefab(bowPickablePrefab);   
+                    
+                    // bow location
+                    var bowLocationPrefab = chebgonazAssetBundle.LoadAsset<GameObject>(ApolloStatueLocation.PrefabName);
+                    bowLocationPrefab.AddComponent<ApolloStatueLocation>();
+                    var config = new LocationConfig()
+                    {
+                        Biome = ApolloBowLocationBiome.Value,
+                        Quantity = ApolloBowQuantity.Value,
+                        Priotized = true,
+                        ExteriorRadius = 2f,
+                        ClearArea = true,
+                    };
+                    var customLocation = new CustomLocation(bowLocationPrefab, false, config);
+                    ZoneManager.Instance.AddCustomLocation(customLocation);
+                }
             }
             catch (Exception ex)
             {

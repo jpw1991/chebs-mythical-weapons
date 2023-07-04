@@ -120,9 +120,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\ApolloBowItem.cs" />
     <Compile Include="Items\ExcaliburItem.cs" />
+    <Compile Include="Locations\ApolloStatueLocation.cs" />
     <Compile Include="Patches\InventoryGuiPatches.cs" />
     <Compile Include="Patches\PickablePatches.cs" />
+    <Compile Include="Pickables\ApolloStatuePickable.cs" />
     <Compile Include="Pickables\SwordInTheStonePickable.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ChebsSwordInTheStone.cs" />
