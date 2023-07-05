@@ -8,8 +8,8 @@
     <ProjectGuid>{DEAF4438-8089-40ED-8175-398E1261D45B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChebsSwordInTheStone</RootNamespace>
-    <AssemblyName>ChebsSwordInTheStone</AssemblyName>
+    <RootNamespace>ChebsMythicalWeapons</RootNamespace>
+    <AssemblyName>ChebsMythicalWeapons</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -129,7 +129,7 @@
     <Compile Include="Pickables\ApolloStatuePickable.cs" />
     <Compile Include="Pickables\SwordInTheStonePickable.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="ChebsSwordInTheStone.cs" />
+    <Compile Include="ChebsMythicalWeapons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Locations\SwordInTheStoneLocation.cs" />
   </ItemGroup>

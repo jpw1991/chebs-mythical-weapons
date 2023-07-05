@@ -1,6 +1,8 @@
-# Cheb's Sword in the Stone
+# Cheb's Mythical Weapons
 
-Cheb's Sword in the Stone adds a powerful one-handed sword called Excalibur to Valheim. This sword must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
+Cheb's Mythical Weapons adds powerful mythical weapons, such as Excalibur and the Bow of Apollo, to Valheim. The weapons are found in special locations; eg. Excalibur must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
+
+Formerly called Cheb's Sword in the Stone, the mod has been renamed, at the request of the commissioner, due of the addition of the Bow of Apollo and upcoming other mythical weapons.
 
 This mod was commissioned by Discord user Mintymintos. If you would like me to create a mod for you, please get in touch.
 
@@ -24,7 +26,7 @@ I'm partnered with [Bisect Hosting](https://bisecthosting.com/chebgonaz) to give
 
 If you would like to report a bug or request a feature, the best way to do it (in order from most preferable to least preferable) is:
 
-a) Create an issue on my [GitHub](hhttps://github.com/jpw1991/chebs-sword-in-the-stone).
+a) Create an issue on my [GitHub](hhttps://github.com/jpw1991/chebs-mythical-weapons).
 
 b) Write to me on [Discord](https://discord.com/invite/EB96ASQ).
 
@@ -44,22 +46,30 @@ A correct installation looks like:
 ```sh
 plugins/
 ├── Translations
-├── chebsswordinthestone
-├── chebsswordinthestone.manifest
-├── ChebsSwordInTheStone.dll
+├── chebsmythicalweapons
+├── chebsmythicalweapons.manifest
+├── ChebsMythicalWeapons.dll
 ├── ChebsValheimLibrary.dll
 └── ... other mods ...
 ```
 
 ## Features
 
-Detailed info in the [wiki](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki). Here's the short version:
+Detailed info in the [wiki](https://github.com/jpw1991/chebs-mythical-weapons/wiki). Here's the short version:
 
-- Adds a powerful sword called Excalibur to the game. Excalibur:
-	- Cannot be crafted.
-	- Suffers no durability loss.
-	- Deals 100 slashing damage and 50 spirit damage.
-- The sword must be found and taken from the stone. It requires 100 sword skill to remove the sword from the stone.
+- New locations such as a Sword in the Stone or Statue of Apollo are sprinkled throughout the world.
+- If the player is worthy (has sufficient skill) they can take the mythical weapon from the location.
+- Sword in the Stone
+	- Excalibur:
+		- Cannot be crafted.
+		- Suffers no durability loss.
+		- Deals 100 slashing damage and 50 spirit damage.
+	- The sword must be found and taken from the stone. It requires 100 sword skill to remove the sword from the stone.
+- Statue of Apollo
+	- The Bow of Apollo:
+		- Cannot be crafted.
+		- Deals 90 piercing damage and 40 spirit damage.
+	- The sword must be found and taken from the stone. It requires 100 bow skill to remove the sword from the stone.
 
 ### Config
 
@@ -67,7 +77,7 @@ Detailed info in the [wiki](https://github.com/jpw1991/chebs-sword-in-the-stone/
 
 Press **F1** to open the mod's configuration panel.
 
-You can also edit the configs manually. Almost everything can be tweaked to your liking. For a complete list of all configuration options, please look [here](https://github.com/jpw1991/chebs-sword-in-the-stone/wiki/Configs).
+You can also edit the configs manually. Almost everything can be tweaked to your liking. For a complete list of all configuration options, please look [here](https://github.com/jpw1991/chebs-mythical-weapons/wiki/Configs).
 
 ### Known Issues
 
@@ -75,13 +85,16 @@ You can also edit the configs manually. Almost everything can be tweaked to your
 
 ## Source
 
-You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-stone).
+You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons).
 
 ## Special Thanks
 
 - MintyMintos for commissioning the mod.
 - [System 6G](https://opengameart.org/users/system-g6) for providing the [Medieval Weapons Pack](https://opengameart.org/content/medieval-weapon-pack) from which I took the Excalibur model.
 - [qubodup](https://opengameart.org/users/qubodup) for the [Wisdom Magic Sound Effect Pack](https://opengameart.org/content/wisdom-magic) which I use for the looting sound effect. [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) stipulates I must indicate whether changes were made: no changes were made.
+- [ArsGothica](https://www.artstation.com/arsgothica) for the Apollo bow model and texture.
+- [Behrtron](https://opengameart.org/users/behrtron) for the [white marble](https://opengameart.org/content/4k-seamless-white-marble-stone-textures-public-domain) texture for the Apollo statue.
+- [Yughues](https://opengameart.org/users/yughues) for the [Free Pillars Models](https://opengameart.org/content/free-pillars-models) which I used for the pedestal upon which the Statue of Apollo rests (downscaled textures from HD to low-D to fit into Valheim aesthetic).
 
 ## Changelog
 
@@ -90,11 +103,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-sword-in-the-sto
 
  Date | Version | Notes 
 --- | --- | ---
-30/06/2023 | 1.1.1 | Implement the differing material requirements per level of upgrade as requested
-25/06/2023 | 1.1.0 | Expose most sword stats to config
-25/06/2023 | 1.0.1 | Permit upgrading of Excalibur
 24/06/2023 | 1.0.0 | Release
-23/06/2023 | 0.0.1   | First alpha version
 
 </details>
 

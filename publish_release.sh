@@ -1,10 +1,10 @@
 #!/bin/bash
 
-RELEASEDIR=ChebsSwordInTheStone/bin/Release
-DLL=$RELEASEDIR/ChebsSwordInTheStone.dll
+RELEASEDIR=ChebsMythicalWeapons/bin/Release
+DLL=$RELEASEDIR/ChebsMythicalWeapons.dll
 LIB=$RELEASEDIR/ChebsValheimLibrary.dll
-BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsswordinthestone
-PLUGINS=ChebsSwordInTheStone/Package/plugins
+BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
+PLUGINS=ChebsMythicalWeapons/Package/plugins
 README=README.md
 TRANSLATIONS=Translations
 
@@ -51,7 +51,7 @@ cp -f "$LIB" "$PLUGINS" || { echo "Error: Failed to copy $LIB"; exit 1; }
 cp -f "$BUN" "$PLUGINS" || { echo "Error: Failed to copy $BUN"; exit 1; }
 cp -f "$BUN.manifest" "$PLUGINS" || { echo "Error: Failed to copy $BUN.manifest"; exit 1; }
 
-ZIPDESTINATION="../bin/Release/ChebsSwordInTheStone.$VERSION.zip"
+ZIPDESTINATION="../bin/Release/ChebsMythicalWeapons.$VERSION.zip"
 
 cd "$PLUGINS/.."
 if [ ! -z "$VERSION" ]; then

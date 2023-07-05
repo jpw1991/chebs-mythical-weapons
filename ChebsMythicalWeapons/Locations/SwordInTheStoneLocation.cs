@@ -1,7 +1,7 @@
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
-namespace ChebsSwordInTheStone.Locations
+namespace ChebsMythicalWeapons.Locations
 {
     public class SwordInTheStoneLocation : MonoBehaviour
     {
@@ -12,11 +12,11 @@ namespace ChebsSwordInTheStone.Locations
         {
             Logger.LogInfo($"Awakening at {transform.position}");
 
-            if (!ChebsSwordInTheStone.ShowMapMarker.Value) return;
+            if (!ChebsMythicalWeapons.ShowMapMarker.Value) return;
             
             Minimap.instance.AddPin(transform.position,
-                ChebsSwordInTheStone.MapMarker.Value, 
-                ChebsSwordInTheStone.Localization.TryTranslate(NameLocalization), 
+                ChebsMythicalWeapons.MapMarker.Value, 
+                ChebsMythicalWeapons.Localization.TryTranslate(NameLocalization), 
                 true, false,
                 Game.instance.GetPlayerProfile().GetPlayerID());
         }

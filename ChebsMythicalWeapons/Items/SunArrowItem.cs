@@ -7,7 +7,7 @@ using Jotunn.Entities;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
-namespace ChebsSwordInTheStone.Items
+namespace ChebsMythicalWeapons.Items
 {
     public class SunArrowItem : Item
     {

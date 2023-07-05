@@ -2,9 +2,9 @@
 using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
-using ChebsSwordInTheStone.Items;
-using ChebsSwordInTheStone.Locations;
-using ChebsSwordInTheStone.Pickables;
+using ChebsMythicalWeapons.Items;
+using ChebsMythicalWeapons.Locations;
+using ChebsMythicalWeapons.Pickables;
 using ChebsValheimLibrary;
 using HarmonyLib;
 using Jotunn;
@@ -15,16 +15,16 @@ using Jotunn.Utils;
 using UnityEngine;
 using Paths = BepInEx.Paths;
 
-namespace ChebsSwordInTheStone
+namespace ChebsMythicalWeapons
 {
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
     [BepInDependency(Main.ModGuid)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.Minor)]
-    internal class ChebsSwordInTheStone : BaseUnityPlugin
+    internal class ChebsMythicalWeapons : BaseUnityPlugin
     {
-        public const string PluginGuid = "com.chebgonaz.chebsswordinthestone";
-        public const string PluginName = "ChebsSwordInTheStone";
-        public const string PluginVersion = "1.1.1";
+        public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
+        public const string PluginName = "ChebsMythicalWeapons";
+        public const string PluginVersion = "1.0.0";
         
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -153,7 +153,7 @@ namespace ChebsSwordInTheStone
         private void LoadAssetBundle()
         {
             // order is important (I think): items, creatures, structures
-            var assetBundlePath = Path.Combine(Path.GetDirectoryName(Info.Location), "chebsswordinthestone");
+            var assetBundlePath = Path.Combine(Path.GetDirectoryName(Info.Location), "chebsmythicalweapons");
             var chebgonazAssetBundle = AssetUtils.LoadAssetBundle(assetBundlePath);
             try
             {

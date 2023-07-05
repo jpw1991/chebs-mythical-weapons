@@ -1,8 +1,8 @@
-using ChebsSwordInTheStone.Pickables;
+using ChebsMythicalWeapons.Pickables;
 using HarmonyLib;
 using Jotunn;
 
-namespace ChebsSwordInTheStone.Patches
+namespace ChebsMythicalWeapons.Patches
 {
     [HarmonyPatch(typeof(Pickable))]
     public class PickablePatches
@@ -40,7 +40,7 @@ namespace ChebsSwordInTheStone.Patches
                      return false; // deny base method completion
                  }
 
-                 if (player.GetSkillLevel(Skills.SkillType.Bows) < ChebsSwordInTheStone.BowSkillRequired.Value)
+                 if (player.GetSkillLevel(Skills.SkillType.Bows) < ChebsMythicalWeapons.BowSkillRequired.Value)
                  {
                      character.Message(MessageHud.MessageType.Center, "$chebgonaz_apollo_unworthy");
                      return false; // deny base method completion
@@ -58,7 +58,7 @@ namespace ChebsSwordInTheStone.Patches
                      return false; // deny base method completion
                  }
 
-                 if (player.GetSkillLevel(Skills.SkillType.Swords) < ChebsSwordInTheStone.SwordSkillRequired.Value)
+                 if (player.GetSkillLevel(Skills.SkillType.Swords) < ChebsMythicalWeapons.SwordSkillRequired.Value)
                  {
                      character.Message(MessageHud.MessageType.Center, "$chebgonaz_swordinthestone_unworthy");
                      return false; // deny base method completion

@@ -5,10 +5,10 @@ on:
     types: [published] # run when a new release is published
 
 env:
-  name: ChebsSwordInTheStone
+  name: ChebsMythicalWeapons
   jsonf: manifest.json
-  desc: Adds a powerful one-handed sword called Excalibur to Valheim. This sword must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
-  dlpath: https://github.com/jpw1991/chebs-sword-in-the-stone/releases/download
+  desc: Cheb's Mythical Weapons adds powerful mythical weapons, such as Excalibur and the Bow of Apollo, to Valheim. The weapons are found in special locations; eg. Excalibur must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
+  dlpath: https://github.com/jpw1991/chebs-mythical-weapons/releases/download
   dependencies: "ValheimModding-Jotunn@2.11.2" # dependencies separated by spaces
   categories: "Mods" # categories separated by spaces
   namespace: ChebGonaz

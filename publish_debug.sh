@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DEBUGDIR=ChebsSwordInTheStone/bin/Debug
-DLL=$DEBUGDIR/ChebsSwordInTheStone.dll
+DEBUGDIR=ChebsMythicalWeapons/bin/Debug
+DLL=$DEBUGDIR/ChebsMythicalWeapons.dll
 LIB=$DEBUGDIR/ChebsValheimLibrary.dll
-BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsswordinthestone
+BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=/home/$USER/.local/share/Steam/steamapps/common/Valheim/BepInEx/plugins
 TRANSLATIONS=Translations
 

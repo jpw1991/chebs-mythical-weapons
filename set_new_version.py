@@ -46,16 +46,16 @@ if __name__ == '__main__':
         sys.exit(1)
 
     file_pattern_replacements = [
-        FilePatternReplacement('ChebsSwordInTheStone/Properties/AssemblyInfo.cs',
+        FilePatternReplacement('ChebsMythicalWeapons/Properties/AssemblyInfo.cs',
                                'AssemblyVersion\\([".0-9]+\\)',
                                f'AssemblyVersion("{version}.0")'),
-        FilePatternReplacement('ChebsSwordInTheStone/Properties/AssemblyInfo.cs',
+        FilePatternReplacement('ChebsMythicalWeapons/Properties/AssemblyInfo.cs',
                                'AssemblyFileVersion\\([".0-9]+\\)',
                                f'AssemblyFileVersion("{version}.0")'),
-        FilePatternReplacement('ChebsSwordInTheStone/ChebsSwordInTheStone.cs',
+        FilePatternReplacement('ChebsMythicalWeapons/ChebsMythicalWeapons.cs',
                                'PluginVersion = [".0-9]+',
                                f'PluginVersion = "{version}"'),
-        FilePatternReplacement('ChebsSwordInTheStone/Package/manifest.json',
+        FilePatternReplacement('ChebsMythicalWeapons/Package/manifest.json',
                                '"version_number": [".0-9]+',
                                f'"version_number": "{version}"'),
     ]

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChebsSwordInTheStone.Pickables
+namespace ChebsMythicalWeapons.Pickables
 {
     public class SwordInTheStonePickable : MonoBehaviour
     {

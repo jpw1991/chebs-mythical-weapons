@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Jotunn.Managers;
 
-namespace ChebsSwordInTheStone.Patches
+namespace ChebsMythicalWeapons.Patches
 {
     [HarmonyPatch(typeof(InventoryGui))]
     public class InventoryGuiPatches
@@ -14,8 +14,8 @@ namespace ChebsSwordInTheStone.Patches
             if (!__instance.InUpradeTab()) return;
             // Mintymintos wants same upgrade costs for both bow and sword
             var keyName = __instance.m_selectedRecipe.Key.ToString();
-            if (keyName.Contains(ChebsSwordInTheStone.Excalibur.ItemName)
-                || keyName.Contains(ChebsSwordInTheStone.ApolloBow.ItemName))
+            if (keyName.Contains(ChebsMythicalWeapons.Excalibur.ItemName)
+                || keyName.Contains(ChebsMythicalWeapons.ApolloBow.ItemName))
             {
                 var itemQuality = __instance.m_selectedRecipe.Value.m_quality;
                 switch (itemQuality)
@@ -70,8 +70,8 @@ namespace ChebsSwordInTheStone.Patches
                 recipes.RemoveAll(recipe =>
                 {
                     var recipeAsStr = recipe.ToString();
-                    return recipeAsStr.Contains(ChebsSwordInTheStone.Excalibur.ItemName)
-                        || recipeAsStr.Contains(ChebsSwordInTheStone.ApolloBow.ItemName);
+                    return recipeAsStr.Contains(ChebsMythicalWeapons.Excalibur.ItemName)
+                        || recipeAsStr.Contains(ChebsMythicalWeapons.ApolloBow.ItemName);
                 });
             }
         }

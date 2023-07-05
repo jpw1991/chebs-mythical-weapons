@@ -377,6 +377,6 @@ Environment.props
 # other
 *.unitypackage
 *.backup
-ChebsSwordInTheStoneUnity/Assets
-ChebsSwordInTheStoneUnity/ProjectSettings/SceneTemplateSettings.json
-ChebsSwordInTheStoneUnity/ProjectSettings/TimelineSettings.asset
+ChebsMythicalWeaponsUnity/Assets
+ChebsMythicalWeaponsUnity/ProjectSettings/SceneTemplateSettings.json
+ChebsMythicalWeaponsUnity/ProjectSettings/TimelineSettings.asset
