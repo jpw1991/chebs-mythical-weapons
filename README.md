@@ -1,6 +1,6 @@
 # Cheb's Mythical Weapons
 
-Cheb's Mythical Weapons adds powerful mythical weapons, such as Excalibur and the Bow of Apollo, to Valheim. The weapons are found in special locations; eg. Excalibur must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
+Cheb's Mythical Weapons adds powerful weapons, eg. Excalibur & the Bow of Apollo, to Valheim. The weapons are found in special locations; eg. Excalibur must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.
 
 Formerly called Cheb's Sword in the Stone, the mod has been renamed, at the request of the commissioner, due of the addition of the Bow of Apollo and upcoming other mythical weapons.
 
