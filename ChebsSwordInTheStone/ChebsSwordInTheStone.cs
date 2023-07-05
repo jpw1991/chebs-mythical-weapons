@@ -45,6 +45,7 @@ namespace ChebsSwordInTheStone
 
         public static ExcaliburItem Excalibur = new();
         public static ApolloBowItem ApolloBow = new();
+        public static SunArrowItem SunArrow = new();
 
         private void Awake()
         {
@@ -118,6 +119,7 @@ namespace ChebsSwordInTheStone
                 Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Statue of Apollo."));
             
             ApolloBow.CreateConfigs(this);
+            SunArrow.CreateConfigs(this);
             #endregion
         }
 
@@ -202,6 +204,11 @@ namespace ChebsSwordInTheStone
                     };
                     var customLocation = new CustomLocation(bowLocationPrefab, false, config);
                     ZoneManager.Instance.AddCustomLocation(customLocation);
+                }
+                {
+                    // sun arrow
+                    var prefab = Base.LoadPrefabFromBundle(SunArrow.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(SunArrow.GetCustomItemFromPrefab(prefab));
                 }
             }
             catch (Exception ex)

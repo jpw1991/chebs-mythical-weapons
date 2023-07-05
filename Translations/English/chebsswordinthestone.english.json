@@ -4,5 +4,12 @@
     "$chebgonaz_swordinthestone_empty": "Just a regular stone where a mighty sword once was.",
     "$chebgonaz_swordinthestone_unworthy": "Try as you might, the sword will not budge.",
     "$chebgonaz_excalibur": "Excalibur",
-    "$chebgonaz_excalibur_desc": "Excalibur is the mythical sword of King Arthur."
+    "$chebgonaz_excalibur_desc": "Excalibur is the mythical sword of King Arthur.",
+
+    "$chebgonaz_sunarrow": "Sun Arrow",
+    "$chebgonaz_sunarrow_desc": "Holy arrows that sear enemies with the heat of the sun.",
+    "$chebgonaz_apollostatue": "Statue of Apollo",
+    "$chebgonaz_apollo_unworthy": "A mysterious force prevents you from taking the bow.",
+    "$chebgonaz_bowofapollo": "Bow of Apollo",
+    "$chebgonaz_bowofapollo_desc": "The legendary bow of Apollo."
 }

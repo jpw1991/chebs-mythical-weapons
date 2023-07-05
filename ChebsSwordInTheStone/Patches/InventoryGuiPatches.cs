@@ -12,9 +12,10 @@ namespace ChebsSwordInTheStone.Patches
         static void SetRecipe(InventoryGui __instance, int index, bool center)
         {
             if (!__instance.InUpradeTab()) return;
-            //[Info   :ChebsSwordInTheStone.Patches.InventoryGuiPatches] Selected recipe = Recipe_ChebGonaz_Excalibur (Recipe),ItemDrop+ItemData
-            //Jotunn.Logger.LogInfo($"Selected recipe = {__instance.m_selectedRecipe.Key},{__instance.m_selectedRecipe.Value}");
-            if (__instance.m_selectedRecipe.Key.ToString().Contains(ChebsSwordInTheStone.Excalibur.ItemName))
+            // Mintymintos wants same upgrade costs for both bow and sword
+            var keyName = __instance.m_selectedRecipe.Key.ToString();
+            if (keyName.Contains(ChebsSwordInTheStone.Excalibur.ItemName)
+                || keyName.Contains(ChebsSwordInTheStone.ApolloBow.ItemName))
             {
                 var itemQuality = __instance.m_selectedRecipe.Value.m_quality;
                 switch (itemQuality)
@@ -67,7 +68,11 @@ namespace ChebsSwordInTheStone.Patches
             if (__instance.InCraftTab())
             {
                 recipes.RemoveAll(recipe =>
-                    recipe.ToString().Contains(ChebsSwordInTheStone.Excalibur.ItemName));    
+                {
+                    var recipeAsStr = recipe.ToString();
+                    return recipeAsStr.Contains(ChebsSwordInTheStone.Excalibur.ItemName)
+                        || recipeAsStr.Contains(ChebsSwordInTheStone.ApolloBow.ItemName);
+                });
             }
         }
     }
