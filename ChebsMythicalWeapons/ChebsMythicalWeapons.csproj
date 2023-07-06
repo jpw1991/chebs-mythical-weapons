@@ -124,6 +124,7 @@
     <Compile Include="Items\ExcaliburItem.cs" />
     <Compile Include="Items\SunArrowItem.cs" />
     <Compile Include="Locations\ApolloStatueLocation.cs" />
+    <Compile Include="Patches\AttackPatches.cs" />
     <Compile Include="Patches\InventoryGuiPatches.cs" />
     <Compile Include="Patches\PickablePatches.cs" />
     <Compile Include="Pickables\ApolloStatuePickable.cs" />

@@ -103,6 +103,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+06/07/2023 | 2.0.1 | Permit optional removal of projectile gravity from projectiles fired with the Bow of Apollo
 05/07/2023 | 2.0.0 | Rename to Cheb's Mythical Weapons; Add bow & statue of Apollo; Add Sun Arrows
 30/06/2023 | 1.1.1 | Implement the differing material requirements per level of upgrade as requested
 25/06/2023 | 1.1.0 | Expose most sword stats to config

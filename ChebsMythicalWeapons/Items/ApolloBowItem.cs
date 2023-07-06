@@ -15,6 +15,8 @@ namespace ChebsMythicalWeapons.Items
         public override string PrefabName => "ChebGonaz_BowOfApollo.prefab";
         public override string NameLocalization => "$chebgonaz_bowofapollo";
         public override string DescriptionLocalization => "$chebgonaz_bowofapollo_desc";
+
+        public static ConfigEntry<bool> RemoveProjectileGravity;
         
         public static ConfigEntry<float> Knockback, BackstabBonus,
             PiercingDamage, FireDamage, BonusPiercingDamagePerLevel, BonusFireDamagePerLevel;
@@ -45,6 +47,11 @@ namespace ChebsMythicalWeapons.Items
             BonusFireDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "BonusFireDamagePerLevel",
                 0f, new ConfigDescription(
                     "Bow's fire damage increase per level.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            RemoveProjectileGravity = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "RemoveProjectileGravity",
+                true, new ConfigDescription(
+                    "Remove projectile gravity for projectiles leaving the bow so that an arrow flights straight and true.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 
