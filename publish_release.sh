@@ -2,7 +2,7 @@
 
 RELEASEDIR=ChebsMythicalWeapons/bin/Release
 DLL=$RELEASEDIR/ChebsMythicalWeapons.dll
-LIB=$RELEASEDIR/ChebsValheimLibrary.dll
+LIB=../chebs-valheim-library/ChebsValheimLibrary/bin/Release/ChebsValheimLibrary.dll
 BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=ChebsMythicalWeapons/Package/plugins
 README=README.md

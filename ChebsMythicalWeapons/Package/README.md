@@ -69,7 +69,11 @@ Detailed info in the [wiki](https://github.com/jpw1991/chebs-mythical-weapons/wi
 	- The Bow of Apollo:
 		- Cannot be crafted.
 		- Deals 90 piercing damage and 40 spirit damage.
-	- The sword must be found and taken from the stone. It requires 100 bow skill to remove the sword from the stone.
+	- The bow must be found and taken from the statue. It requires 100 bow skill to be deemed worthy of the bow.
+- Blade of Olympus
+	+ Crafted weapon.
+	+ Deals 100 slashing damage and 50 lightning damage.
+	+ Can only be made during a thunderstorm.
 
 ### Config
 
@@ -90,9 +94,10 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 ## Special Thanks
 
 - MintyMintos for commissioning the mod.
+- Shawesome for commissioning the Blade of Olympus (and setting it up in Unity).
 - [System 6G](https://opengameart.org/users/system-g6) for providing the [Medieval Weapons Pack](https://opengameart.org/content/medieval-weapon-pack) from which I took the Excalibur model.
 - [qubodup](https://opengameart.org/users/qubodup) for the [Wisdom Magic Sound Effect Pack](https://opengameart.org/content/wisdom-magic) which I use for the looting sound effect. [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/) stipulates I must indicate whether changes were made: no changes were made.
-- [ArsGothica](https://www.artstation.com/arsgothica) for the Apollo bow model and texture.
+- [ArsGothica](https://www.artstation.com/arsgothica) for the Apollo bow model and texture; also for the Blade of Olympus model and texture.
 - [Behrtron](https://opengameart.org/users/behrtron) for the [white marble](https://opengameart.org/content/4k-seamless-white-marble-stone-textures-public-domain) texture for the Apollo statue.
 - [Yughues](https://opengameart.org/users/yughues) for the [Free Pillars Models](https://opengameart.org/content/free-pillars-models) which I used for the pedestal upon which the Statue of Apollo rests (downscaled textures from HD to low-D to fit into Valheim aesthetic).
 
@@ -103,6 +108,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+13/07/2023 | 2.1.0 | Add Blade of Olympus
 06/07/2023 | 2.0.1 | Permit optional removal of projectile gravity from projectiles fired with the Bow of Apollo
 05/07/2023 | 2.0.0 | Rename to Cheb's Mythical Weapons; Add bow & statue of Apollo; Add Sun Arrows
 30/06/2023 | 1.1.1 | Implement the differing material requirements per level of upgrade as requested

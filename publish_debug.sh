@@ -2,7 +2,7 @@
 
 DEBUGDIR=ChebsMythicalWeapons/bin/Debug
 DLL=$DEBUGDIR/ChebsMythicalWeapons.dll
-LIB=$DEBUGDIR/ChebsValheimLibrary.dll
+LIB=../chebs-valheim-library/ChebsValheimLibrary/bin/Release/ChebsValheimLibrary.dll
 BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=/home/$USER/.local/share/Steam/steamapps/common/Valheim/BepInEx/plugins
 TRANSLATIONS=Translations

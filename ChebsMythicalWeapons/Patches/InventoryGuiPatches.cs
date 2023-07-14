@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ChebsMythicalWeapons.Items;
+using ChebsValheimLibrary.Common;
 using HarmonyLib;
 using Jotunn.Managers;
 
@@ -65,13 +67,28 @@ namespace ChebsMythicalWeapons.Patches
         static void UpdateRecipeList(InventoryGui __instance, ref List<Recipe> recipes)
         {
             // remove Excalibur from the crafting options if it is there
+            // --------
+            // Shawesome wants the blade only craftable during a Thunderstorm. There's a couple of potential ways to go
+            // about doing this (as far as my own understanding of things goes):
+            //
+            // a) List it as a recipe normally, then make a boolean patch on InventoryGui.OnCraftPressed and block
+            //    and show a message like "Can only craft during thunderstorm"
+            // b) Only add it as a recipe if it is currently a thunderstorm
+            //
+            // I think A is the nicer option, but will also conflict more with other mods. So for that reason, I
+            // decided to go with option B and remove it if there's no thunderstorm currently active.
+            var currentEnvironment = EnvMan.instance.GetCurrentEnvironment();
+            var thunderstormActive = BladeOfOlympusItem.CraftingWeatherCondition.Value == Weather.Env.None
+                || currentEnvironment.m_name.Equals(InternalName.GetName(BladeOfOlympusItem.CraftingWeatherCondition.Value));
+            //Jotunn.Logger.LogInfo($"val = {InternalName.GetName(BladeOfOlympusItem.CraftingWeatherCondition.Value)}");
             if (__instance.InCraftTab())
             {
                 recipes.RemoveAll(recipe =>
                 {
                     var recipeAsStr = recipe.ToString();
                     return recipeAsStr.Contains(ChebsMythicalWeapons.Excalibur.ItemName)
-                        || recipeAsStr.Contains(ChebsMythicalWeapons.ApolloBow.ItemName);
+                        || recipeAsStr.Contains(ChebsMythicalWeapons.ApolloBow.ItemName)
+                        || (!thunderstormActive && recipeAsStr.Contains(ChebsMythicalWeapons.BladeOfOlympus.ItemName));
                 });
             }
         }

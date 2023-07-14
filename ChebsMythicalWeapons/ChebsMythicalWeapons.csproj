@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\ApolloBowItem.cs" />
+    <Compile Include="Items\BladeOfOlympusItem.cs" />
     <Compile Include="Items\ExcaliburItem.cs" />
     <Compile Include="Items\SunArrowItem.cs" />
     <Compile Include="Locations\ApolloStatueLocation.cs" />

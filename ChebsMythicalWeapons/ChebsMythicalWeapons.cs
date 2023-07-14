@@ -24,12 +24,12 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "2.0.1";
+        public const string PluginVersion = "2.1.0";
         
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly System.Version ChebsValheimLibraryVersion = new("2.0.1");
+        public readonly System.Version ChebsValheimLibraryVersion = new("2.1.0");
 
         private readonly Harmony harmony = new(PluginGuid);
 
@@ -46,6 +46,7 @@ namespace ChebsMythicalWeapons
         public static ExcaliburItem Excalibur = new();
         public static ApolloBowItem ApolloBow = new();
         public static SunArrowItem SunArrow = new();
+        public static BladeOfOlympusItem BladeOfOlympus = new();
 
         private void Awake()
         {
@@ -120,6 +121,9 @@ namespace ChebsMythicalWeapons
             
             ApolloBow.CreateConfigs(this);
             SunArrow.CreateConfigs(this);
+            #endregion
+            #region BladeOfOlympus
+            BladeOfOlympus.CreateConfigs(this);
             #endregion
         }
 
@@ -209,6 +213,11 @@ namespace ChebsMythicalWeapons
                     // sun arrow
                     var prefab = Base.LoadPrefabFromBundle(SunArrow.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
                     ItemManager.Instance.AddItem(SunArrow.GetCustomItemFromPrefab(prefab));
+                }
+                {
+                    // blade of olympus
+                    var prefab = Base.LoadPrefabFromBundle(BladeOfOlympus.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(BladeOfOlympus.GetCustomItemFromPrefab(prefab));
                 }
             }
             catch (Exception ex)
