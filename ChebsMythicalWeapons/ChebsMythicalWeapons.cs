@@ -25,7 +25,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "3.0.0";
+        public const string PluginVersion = "3.0.1";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -277,11 +277,7 @@ namespace ChebsMythicalWeapons
                     {
                         Logger.LogError("Failed to set minotaur health (no humanoid component)");
                     }
-
-                    // var characterDrop = minoPrefab.GetComponent<CharacterDrop>();
-                    // if (characterDrop == null)
-                    //     characterDrop = minoPrefab.AddComponent<CharacterDrop>();
-                    // characterDrop.m_drops.AddItem(ItemManager.Instance.GetItem(Joyce.ItemName));
+                    
                     CreatureManager.Instance.AddCreature(customCreature);
                 }
             }

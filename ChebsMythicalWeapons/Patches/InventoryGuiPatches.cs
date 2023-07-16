@@ -90,6 +90,7 @@ namespace ChebsMythicalWeapons.Patches
                     var recipeAsStr = recipe.ToString();
                     return recipeAsStr.Contains(ChebsMythicalWeapons.Excalibur.ItemName)
                            || recipeAsStr.Contains(ChebsMythicalWeapons.ApolloBow.ItemName)
+                           || recipeAsStr.Contains(ChebsMythicalWeapons.Joyce.ItemName)
                            || (!thunderstormActive &&
                                recipeAsStr.Contains(ChebsMythicalWeapons.BladeOfOlympus.ItemName));
                 });

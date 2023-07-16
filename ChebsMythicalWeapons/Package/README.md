@@ -74,6 +74,10 @@ Detailed info in the [wiki](https://github.com/jpw1991/chebs-mythical-weapons/wi
 	+ Crafted weapon.
 	+ Deals 100 slashing damage and 50 lightning damage.
 	+ Can only be made during a thunderstorm.
+- Joyce Axe
+	+ Carried by custom minotaur enemy.
+	+ Deals 100 slashing damage and 50 fire damage.
+	+ Can only be made during a thunderstorm.
 
 ### Config
 
@@ -110,6 +114,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+16/07/2023 | 3.0.1 | Fix bug of Joyce being craftable; update readme
 16/07/2023 | 3.0.0 | Add Minotaur and Joyce axe
 13/07/2023 | 2.1.0 | Add Blade of Olympus
 06/07/2023 | 2.0.1 | Permit optional removal of projectile gravity from projectiles fired with the Bow of Apollo
