@@ -11,7 +11,7 @@ namespace ChebsMythicalWeapons.Creatures
         public static string LocalizedName => LocalizationManager.Instance.TryTranslate("$chebgonaz_minotaur");
 
         public static ConfigEntry<Character.Faction> Faction;
-        public static ConfigEntry<float> SpawnChance, SpawnInterval, SpawnDistance;
+        public static ConfigEntry<float> SpawnChance, SpawnInterval, SpawnDistance, Health;
         public static ConfigEntry<int> MaxSpawned;
         public static ConfigEntry<Heightmap.Biome> Biome;
 
@@ -47,6 +47,11 @@ namespace ChebsMythicalWeapons.Creatures
             Biome = plugin.Config.Bind(serverSynced, "Biome",
                 Heightmap.Biome.Plains, new ConfigDescription(
                     "The biome where the creature spawns.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            Health = plugin.Config.Bind<float>(serverSynced, "Health",
+                2500f, new ConfigDescription(
+                    "The health of the creature.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
     }

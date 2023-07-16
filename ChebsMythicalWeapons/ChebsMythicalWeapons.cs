@@ -269,6 +269,19 @@ namespace ChebsMythicalWeapons
                         Biome = MinotaurCreature.Biome.Value
                     });
                     var customCreature = new CustomCreature(minoPrefab, true, customCreatureConfig);
+                    if (minoPrefab.TryGetComponent(out Humanoid humanoid))
+                    {
+                        humanoid.m_health = MinotaurCreature.Health.Value;
+                    }
+                    else
+                    {
+                        Logger.LogError("Failed to set minotaur health (no humanoid component)");
+                    }
+
+                    // var characterDrop = minoPrefab.GetComponent<CharacterDrop>();
+                    // if (characterDrop == null)
+                    //     characterDrop = minoPrefab.AddComponent<CharacterDrop>();
+                    // characterDrop.m_drops.AddItem(ItemManager.Instance.GetItem(Joyce.ItemName));
                     CreatureManager.Instance.AddCreature(customCreature);
                 }
             }

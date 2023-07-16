@@ -100,6 +100,8 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 - [ArsGothica](https://www.artstation.com/arsgothica) for the Apollo bow model and texture; also for the Blade of Olympus model and texture.
 - [Behrtron](https://opengameart.org/users/behrtron) for the [white marble](https://opengameart.org/content/4k-seamless-white-marble-stone-textures-public-domain) texture for the Apollo statue.
 - [Yughues](https://opengameart.org/users/yughues) for the [Free Pillars Models](https://opengameart.org/content/free-pillars-models) which I used for the pedestal upon which the Statue of Apollo rests (downscaled textures from HD to low-D to fit into Valheim aesthetic).
+- Brandon Morris for the [Minotaur sound effects](https://opengameart.org/content/osare-minotaur-sounds)
+- [cggroup](https://assetstore.unity.com/publishers/24906) for the [Minotaur Warriors](https://assetstore.unity.com/packages/3d/characters/minotaur-warriors-80621) pack.
 
 ## Changelog
 
@@ -108,6 +110,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+16/07/2023 | 3.0.0 | Add Minotaur and Joyce axe
 13/07/2023 | 2.1.0 | Add Blade of Olympus
 06/07/2023 | 2.0.1 | Permit optional removal of projectile gravity from projectiles fired with the Bow of Apollo
 05/07/2023 | 2.0.0 | Rename to Cheb's Mythical Weapons; Add bow & statue of Apollo; Add Sun Arrows
