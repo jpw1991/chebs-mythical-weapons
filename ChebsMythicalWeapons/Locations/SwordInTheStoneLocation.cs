@@ -13,10 +13,10 @@ namespace ChebsMythicalWeapons.Locations
             Logger.LogInfo($"Awakening at {transform.position}");
 
             if (!ChebsMythicalWeapons.ShowMapMarker.Value) return;
-            
+
             Minimap.instance.AddPin(transform.position,
-                ChebsMythicalWeapons.MapMarker.Value, 
-                ChebsMythicalWeapons.Localization.TryTranslate(NameLocalization), 
+                ChebsMythicalWeapons.MapMarker.Value,
+                ChebsMythicalWeapons.Localization.TryTranslate(NameLocalization),
                 true, false,
                 Game.instance.GetPlayerProfile().GetPlayerID());
         }

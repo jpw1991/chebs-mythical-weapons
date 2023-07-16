@@ -15,10 +15,17 @@ namespace ChebsMythicalWeapons.Items
         public override string PrefabName => "ChebGonaz_Excalibur.prefab";
         public override string NameLocalization => "$chebgonaz_excalibur";
         public override string DescriptionLocalization => "$chebgonaz_excalibur_desc";
-        
-        public static ConfigEntry<float> Knockback, BackstabBonus,
-            SlashDamage, SpiritDamage, BonusSlashDamagePerLevel, BonusSpiritDamagePerLevel,
-            BlockPower, BlockPowerPerLevel, DeflectionForce, DeflectionForcePerLevel;
+
+        public static ConfigEntry<float> Knockback,
+            BackstabBonus,
+            SlashDamage,
+            SpiritDamage,
+            BonusSlashDamagePerLevel,
+            BonusSpiritDamagePerLevel,
+            BlockPower,
+            BlockPowerPerLevel,
+            DeflectionForce,
+            DeflectionForcePerLevel;
 
         public override void CreateConfigs(BaseUnityPlugin plugin)
         {
@@ -30,7 +37,7 @@ namespace ChebsMythicalWeapons.Items
                 3f, new ConfigDescription(
                     "Excalibur's base backstab value.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
-            
+
             SlashDamage = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "SlashDamage",
                 100f, new ConfigDescription(
                     "Excalibur's base slash damage value.", null,
@@ -39,15 +46,17 @@ namespace ChebsMythicalWeapons.Items
                 50f, new ConfigDescription(
                     "Excalibur's base spirit damage value.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
-            BonusSlashDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "BonusSlashDamagePerLevel",
+            BonusSlashDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)",
+                "BonusSlashDamagePerLevel",
                 20f, new ConfigDescription(
                     "Excalibur's slash damage increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
-            BonusSpiritDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "BonusSpiritDamagePerLevel",
+            BonusSpiritDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)",
+                "BonusSpiritDamagePerLevel",
                 0f, new ConfigDescription(
                     "Excalibur's spirit damage increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
-            
+
             BlockPower = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "BlockPower",
                 43f, new ConfigDescription(
                     "Excalibur's base blocking power.", null,
@@ -73,7 +82,7 @@ namespace ChebsMythicalWeapons.Items
                 Name = NameLocalization,
                 Description = DescriptionLocalization,
                 CraftingStation = InternalName.GetName(CraftingTable.Forge),
-                Requirements = new []
+                Requirements = new[]
                 {
                     // add an upgrade amount of 20 silver per level of Excalibur
                     new RequirementConfig()
@@ -93,20 +102,25 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+
             #region AttackSettings
+
             itemDataShared.m_attackForce = Knockback.Value;
             itemDataShared.m_backstabBonus = BackstabBonus.Value;
             itemDataShared.m_damages.m_slash = SlashDamage.Value;
             itemDataShared.m_damages.m_spirit = SpiritDamage.Value;
             itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
             itemDataShared.m_damagesPerLevel.m_spirit = BonusSpiritDamagePerLevel.Value;
+
             #endregion
-            
+
             #region ShieldSettings
+
             itemDataShared.m_blockPower = BlockPower.Value; // block force
             itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
             itemDataShared.m_deflectionForce = DeflectionForce.Value;
             itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
+
             #endregion
 
             return customItem;

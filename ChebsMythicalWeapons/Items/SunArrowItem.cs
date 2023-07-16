@@ -1,6 +1,5 @@
 using BepInEx;
 using BepInEx.Configuration;
-using ChebsValheimLibrary.Common;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
@@ -16,11 +15,11 @@ namespace ChebsMythicalWeapons.Items
         public override string NameLocalization => "$chebgonaz_sunarrow";
         public override string DescriptionLocalization => "$chebgonaz_sunarrow_desc";
         protected override string DefaultRecipe => "Flametal:2,FineWood:20";
-        
+
         public static ConfigEntry<CraftingTable> CraftingStationRequired;
         public static ConfigEntry<int> CraftingStationLevel;
         public static ConfigEntry<string> CraftingCost;
-        
+
         public static ConfigEntry<float> Knockback, PiercingDamage, FireDamage;
 
         public override void CreateConfigs(BaseUnityPlugin plugin)
@@ -55,12 +54,12 @@ namespace ChebsMythicalWeapons.Items
                     "Base fire damage value.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
-        
+
         public override void UpdateRecipe()
         {
             UpdateRecipe(CraftingStationRequired, CraftingCost, CraftingStationLevel);
         }
-        
+
         public override CustomItem GetCustomItemFromPrefab(GameObject prefab)
         {
             var config = new ItemConfig
@@ -88,12 +87,15 @@ namespace ChebsMythicalWeapons.Items
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
                 return null;
             }
-            
+
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+
             #region AttackSettings
+
             itemDataShared.m_attackForce = Knockback.Value;
             itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
             itemDataShared.m_damages.m_fire = FireDamage.Value;
+
             #endregion
 
             return customItem;
