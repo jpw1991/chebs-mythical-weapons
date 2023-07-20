@@ -25,7 +25,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "3.0.1";
+        public const string PluginVersion = "4.0.0";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -36,11 +36,6 @@ namespace ChebsMythicalWeapons
 
         // if set to true, the particle effects that for some reason hurt radeon are dynamically disabled
         public static ConfigEntry<bool> RadeonFriendly;
-        public static ConfigEntry<int> SwordInTheStoneQuantity, ApolloBowQuantity;
-        public static ConfigEntry<Heightmap.Biome> SwordInTheStoneLocationBiome, ApolloBowLocationBiome;
-        public static ConfigEntry<int> SwordSkillRequired, BowSkillRequired;
-        public static ConfigEntry<bool> ShowMapMarker, ApolloBowShowMapMarker;
-        public static ConfigEntry<Minimap.PinType> MapMarker, ApolloBowMapMarker;
 
         public static CustomLocalization Localization = LocalizationManager.Instance.GetLocalization();
 
@@ -48,6 +43,7 @@ namespace ChebsMythicalWeapons
         public static ApolloBowItem ApolloBow = new();
         public static SunArrowItem SunArrow = new();
         public static BladeOfOlympusItem BladeOfOlympus = new();
+        public static GreatswordOfOlympusItem GreatswordOfOlympus = new();
         public static JoyceItem Joyce = new();
 
         private void Awake()
@@ -77,56 +73,14 @@ namespace ChebsMythicalWeapons
 
             #region SwordInTheStone
 
-            SwordInTheStoneQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "SwordInTheStoneQuantity",
-                30, new ConfigDescription(
-                    "The amount of Sword in the Stone locations in the world.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            SwordInTheStoneLocationBiome = Config.Bind($"{GetType().Name} (Server Synced)",
-                "SwordInTheStoneLocationBiome",
-                Heightmap.Biome.Meadows, new ConfigDescription(
-                    "The biome in which a Sword in the Stone can appear.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            SwordSkillRequired = Config.Bind($"{GetType().Name} (Server Synced)", "SwordSkillRequired",
-                100, new ConfigDescription(
-                    "The sword skill required to take Excalibur out of the stone.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            ShowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ShowMapMarker",
-                true, new ConfigDescription("Whether a Sword in the Stone will appear on the map or not."));
-
-            MapMarker = Config.Bind($"{GetType().Name} (Client)", "MapMarker",
-                Minimap.PinType.Boss,
-                new ConfigDescription("The type of map marker shown for the Sword in the Stone."));
-
+            SwordInTheStoneLocation.CreateConfigs(this);
             Excalibur.CreateConfigs(this);
 
             #endregion
 
             #region ApolloBow
 
-            ApolloBowQuantity = Config.Bind($"{GetType().Name} (Server Synced)", "ApolloBowQuantity",
-                30, new ConfigDescription(
-                    "The amount of Statue of Apollo locations in the world.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            ApolloBowLocationBiome = Config.Bind($"{GetType().Name} (Server Synced)", "ApolloBowLocationBiome",
-                Heightmap.Biome.Meadows, new ConfigDescription(
-                    "The biome in which a Statue of Apollo can appear.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            BowSkillRequired = Config.Bind($"{GetType().Name} (Server Synced)", "BowSkillRequired",
-                100, new ConfigDescription(
-                    "The bow skill required to take Apollo's Bow from the statue.", null,
-                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
-
-            ApolloBowShowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ApolloBowShowMapMarker",
-                true, new ConfigDescription("Whether a Statue of Apollo will appear on the map or not."));
-
-            ApolloBowMapMarker = Config.Bind($"{GetType().Name} (Client)", "ApolloBowMapMarker",
-                Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the Statue of Apollo."));
-
+            ApolloStatueLocation.CreateConfigs(this);
             ApolloBow.CreateConfigs(this);
             SunArrow.CreateConfigs(this);
 
@@ -135,6 +89,7 @@ namespace ChebsMythicalWeapons
             #region BladeOfOlympus
 
             BladeOfOlympus.CreateConfigs(this);
+            GreatswordOfOlympus.CreateConfigs(this);
 
             #endregion
 
@@ -198,8 +153,8 @@ namespace ChebsMythicalWeapons
                     swordInTheStoneLocationPrefab.AddComponent<SwordInTheStoneLocation>();
                     var swordInTheStoneConfig = new LocationConfig()
                     {
-                        Biome = SwordInTheStoneLocationBiome.Value,
-                        Quantity = SwordInTheStoneQuantity.Value,
+                        Biome = SwordInTheStoneLocation.Biome.Value,
+                        Quantity = SwordInTheStoneLocation.Quantity.Value,
                         Priotized = true,
                         ExteriorRadius = 2f,
                         ClearArea = true,
@@ -225,8 +180,8 @@ namespace ChebsMythicalWeapons
                     bowLocationPrefab.AddComponent<ApolloStatueLocation>();
                     var config = new LocationConfig()
                     {
-                        Biome = ApolloBowLocationBiome.Value,
-                        Quantity = ApolloBowQuantity.Value,
+                        Biome = ApolloStatueLocation.Biome.Value,
+                        Quantity = ApolloStatueLocation.Quantity.Value,
                         Priotized = true,
                         ExteriorRadius = 2f,
                         ClearArea = true,
@@ -247,6 +202,12 @@ namespace ChebsMythicalWeapons
                     ItemManager.Instance.AddItem(BladeOfOlympus.GetCustomItemFromPrefab(prefab));
                 }
                 {
+                    // greatsword of olympus
+                    var prefab = Base.LoadPrefabFromBundle(GreatswordOfOlympus.PrefabName, chebgonazAssetBundle,
+                        RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(GreatswordOfOlympus.GetCustomItemFromPrefab(prefab));
+                }
+                {
                     // axe
                     var prefab =
                         Base.LoadPrefabFromBundle(Joyce.PrefabName, chebgonazAssetBundle, RadeonFriendly.Value);
@@ -255,6 +216,7 @@ namespace ChebsMythicalWeapons
                     // minotaur
                     var minoPrefab = Base.LoadPrefabFromBundle(MinotaurCreature.PrefabName, chebgonazAssetBundle,
                         RadeonFriendly.Value);
+                    minoPrefab.AddComponent<MinotaurCreature>();
                     var customCreatureConfig = new CreatureConfig
                     {
                         Name = MinotaurCreature.LocalizedName,
@@ -277,7 +239,7 @@ namespace ChebsMythicalWeapons
                     {
                         Logger.LogError("Failed to set minotaur health (no humanoid component)");
                     }
-                    
+
                     CreatureManager.Instance.AddCreature(customCreature);
                 }
             }

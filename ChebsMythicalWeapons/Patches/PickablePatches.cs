@@ -1,3 +1,4 @@
+using ChebsMythicalWeapons.Locations;
 using ChebsMythicalWeapons.Pickables;
 using HarmonyLib;
 using Jotunn;
@@ -40,7 +41,7 @@ namespace ChebsMythicalWeapons.Patches
                     return false; // deny base method completion
                 }
 
-                if (player.GetSkillLevel(Skills.SkillType.Bows) < ChebsMythicalWeapons.BowSkillRequired.Value)
+                if (player.GetSkillLevel(Skills.SkillType.Bows) < ApolloStatueLocation.BowSkillRequired.Value)
                 {
                     character.Message(MessageHud.MessageType.Center, "$chebgonaz_apollo_unworthy");
                     return false; // deny base method completion
@@ -58,7 +59,7 @@ namespace ChebsMythicalWeapons.Patches
                     return false; // deny base method completion
                 }
 
-                if (player.GetSkillLevel(Skills.SkillType.Swords) < ChebsMythicalWeapons.SwordSkillRequired.Value)
+                if (player.GetSkillLevel(Skills.SkillType.Swords) < SwordInTheStoneLocation.SwordSkillRequired.Value)
                 {
                     character.Message(MessageHud.MessageType.Center, "$chebgonaz_swordinthestone_unworthy");
                     return false; // deny base method completion
