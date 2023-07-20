@@ -1,7 +1,7 @@
 ﻿{
   "name": "ChebsMythicalWeapons",
   "description": "Adds mythical weapons to Valheim. The weapons are found in special locations; eg. Excalibur must be found somewhere in the world and only someone with 100 sword skill can remove it from the stone and use it.",
-  "version_number": "3.0.1",
+  "version_number": "3.0.2",
   "website_url": "https://github.com/jpw1991/chebs-mythical-weapons",
   "dependencies": [
     "ValheimModding-Jotunn-2.11.2"

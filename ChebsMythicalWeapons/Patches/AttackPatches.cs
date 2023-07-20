@@ -14,8 +14,6 @@ namespace ChebsMythicalWeapons.Patches
             var lastProjectile = __instance.m_weapon.m_lastProjectile;
             if (lastProjectile == null) return;
 
-            if (!ApolloBowItem.RemoveProjectileGravity.Value) return;
-
             if (__instance.m_weapon.m_dropPrefab.name.Equals(ChebsMythicalWeapons.ApolloBow.ItemName))
             {
                 lastProjectile.GetComponent<Projectile>().m_gravity = 0;

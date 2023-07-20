@@ -16,7 +16,7 @@ namespace ChebsMythicalWeapons.Items
         public override string NameLocalization => "$chebgonaz_bowofapollo";
         public override string DescriptionLocalization => "$chebgonaz_bowofapollo_desc";
 
-        public static ConfigEntry<bool> RemoveProjectileGravity;
+        public static ConfigEntry<float> ProjectileGravity;
 
         public static ConfigEntry<float> Knockback,
             BackstabBonus,
@@ -54,9 +54,9 @@ namespace ChebsMythicalWeapons.Items
                     "Bow's fire damage increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
-            RemoveProjectileGravity = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "RemoveProjectileGravity",
-                true, new ConfigDescription(
-                    "Remove projectile gravity for projectiles leaving the bow so that an arrow flights straight and true.",
+            ProjectileGravity = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileGravity",
+                5f, new ConfigDescription(
+                    "Replace projectile gravity for projectiles leaving the bow to manipulate the drop. For an arrow that flies straight and true, use 0; for default arrow behaviour, use 5.",
                     null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
