@@ -9,12 +9,12 @@ namespace ChebsMythicalWeapons.Locations
     {
         public const string PrefabName = "ChebGonaz_SwordInTheStone.prefab";
         public const string NameLocalization = "$chebgonaz_swordinthestone";
-        
+
         public static ConfigEntry<Heightmap.Biome> Biome;
         public static ConfigEntry<Minimap.PinType> MapMarker;
         public static ConfigEntry<int> Quantity;
         public static ConfigEntry<int> SwordSkillRequired;
-        
+
         public static void CreateConfigs(BaseUnityPlugin plugin)
         {
             const string serverSynced = "SwordInTheStoneLocation (Server Synced)";
@@ -22,7 +22,7 @@ namespace ChebsMythicalWeapons.Locations
 
             MapMarker = plugin.Config.Bind(client, "MapMarker",
                 Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown (set to None to disable)."));
-            
+
             Quantity = plugin.Config.Bind(serverSynced, "Quantity",
                 30, new ConfigDescription(
                     "The amount of Sword in the Stone locations in the world.", null,

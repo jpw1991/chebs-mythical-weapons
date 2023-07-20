@@ -1,4 +1,3 @@
-using System;
 using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace ChebsMythicalWeapons.Locations
         public static ConfigEntry<Minimap.PinType> MapMarker;
         public static ConfigEntry<int> Quantity;
         public static ConfigEntry<int> BowSkillRequired;
-        
+
         public static void CreateConfigs(BaseUnityPlugin plugin)
         {
             const string serverSynced = "ApolloStatueLocation (Server Synced)";
@@ -23,7 +22,7 @@ namespace ChebsMythicalWeapons.Locations
 
             MapMarker = plugin.Config.Bind(client, "MapMarker",
                 Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown (set to None to disable)."));
-            
+
             Quantity = plugin.Config.Bind(serverSynced, "ApolloBowQuantity",
                 30, new ConfigDescription(
                     "The amount of Statue of Apollo locations in the world.", null,

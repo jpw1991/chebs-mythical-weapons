@@ -72,14 +72,18 @@ namespace ChebsMythicalWeapons
                                              "this setting on."));
 
             #region SwordInTheStone
+
             SwordInTheStoneLocation.CreateConfigs(this);
             Excalibur.CreateConfigs(this);
+
             #endregion
 
             #region ApolloBow
+
             ApolloStatueLocation.CreateConfigs(this);
             ApolloBow.CreateConfigs(this);
             SunArrow.CreateConfigs(this);
+
             #endregion
 
             #region BladeOfOlympus
@@ -235,7 +239,7 @@ namespace ChebsMythicalWeapons
                     {
                         Logger.LogError("Failed to set minotaur health (no humanoid component)");
                     }
-                    
+
                     CreatureManager.Instance.AddCreature(customCreature);
                 }
             }
