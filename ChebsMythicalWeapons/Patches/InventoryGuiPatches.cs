@@ -92,7 +92,8 @@ namespace ChebsMythicalWeapons.Patches
                            || recipeAsStr.Contains(ChebsMythicalWeapons.ApolloBow.ItemName)
                            || recipeAsStr.Contains(ChebsMythicalWeapons.Joyce.ItemName)
                            || (!thunderstormActive &&
-                               recipeAsStr.Contains(ChebsMythicalWeapons.BladeOfOlympus.ItemName));
+                               (recipeAsStr.Contains(ChebsMythicalWeapons.BladeOfOlympus.ItemName)
+                               || recipeAsStr.Contains(ChebsMythicalWeapons.GreatswordOfOlympus.ItemName)));
                 });
             }
         }
