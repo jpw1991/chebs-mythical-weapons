@@ -1,10 +1,12 @@
+using System;
 using BepInEx;
 using BepInEx.Configuration;
 using Jotunn.Managers;
+using UnityEngine;
 
 namespace ChebsMythicalWeapons.Creatures
 {
-    public class MinotaurCreature
+    public class MinotaurCreature : MonoBehaviour
     {
         public const string PrefabName = "ChebGonaz_Minotaur.prefab";
         public const string CreatureName = "ChebGonaz_Minotaur";
@@ -14,10 +16,15 @@ namespace ChebsMythicalWeapons.Creatures
         public static ConfigEntry<float> SpawnChance, SpawnInterval, SpawnDistance, Health;
         public static ConfigEntry<int> MaxSpawned;
         public static ConfigEntry<Heightmap.Biome> Biome;
+        
+        public static ConfigEntry<Minimap.PinType> MapMarker;
+        
+        private Minimap.PinData _pinData;
 
         public static void CreateConfigs(BaseUnityPlugin plugin)
         {
             const string serverSynced = "MinotaurCreature (Server Synced)";
+            const string client = "MinotaurCreature (Client)";
 
             Faction = plugin.Config.Bind<Character.Faction>(serverSynced, "Faction",
                 Character.Faction.PlainsMonsters, new ConfigDescription(
@@ -53,6 +60,34 @@ namespace ChebsMythicalWeapons.Creatures
                 2500f, new ConfigDescription(
                     "The health of the creature.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
+
+            MapMarker = plugin.Config.Bind(client, "MapMarker",
+                Minimap.PinType.Boss, new ConfigDescription("The type of map marker shown for the minotaur (set to None to disable)."));
+        }
+
+        private void Awake()
+        {
+            if (MapMarker.Value == Minimap.PinType.None) return;
+
+            _pinData = Minimap.instance.AddPin(transform.position,
+                MapMarker.Value,
+                ChebsMythicalWeapons.Localization.TryTranslate(CreatureName),
+                false, false,
+                Game.instance.GetPlayerProfile().GetPlayerID());
+        }
+        
+        private void LateUpdate()
+        {
+            if (_pinData == null) return;
+
+            _pinData.m_pos = transform.position;
+        }
+
+        private void OnDestroy()
+        {
+            if (_pinData == null) return;
+
+            Minimap.instance.RemovePin(_pinData);
         }
     }
 }
