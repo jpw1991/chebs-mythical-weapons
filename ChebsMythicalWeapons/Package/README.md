@@ -74,10 +74,15 @@ Detailed info in the [wiki](https://github.com/jpw1991/chebs-mythical-weapons/wi
 	+ Crafted weapon.
 	+ Deals 100 slashing damage and 50 lightning damage.
 	+ Can only be made during a thunderstorm.
+	+ One-handed sword.
+- Greatsword of Olympus
+	+ Crafted weapon.
+	+ Deals 140 slashing damage and 50 lightning damage
+	+ Can only be made during a thunderstorm.
+	+ Two-handed sword.
 - Joyce Axe
 	+ Carried by custom minotaur enemy.
 	+ Deals 100 slashing damage and 50 fire damage.
-	+ Can only be made during a thunderstorm.
 
 ### Config
 
@@ -114,6 +119,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+21/07/2023 | 4.1.0 | add two special attacks to minotaur; fix blade of olympus to be properly one handed
 19/07/2023 | 4.0.0 | Make Blade of Olympus a one handed weapon; add Greatsword of Olympus as 2h weapon with appropriate stats; make dynamic Minotaur icon on minimap; streamline configs
 19/07/2023 | 3.0.2 | expose gravity adjustment of Bow of Apollo projectiles to config
 16/07/2023 | 3.0.1 | Fix bug of Joyce being craftable; update readme
