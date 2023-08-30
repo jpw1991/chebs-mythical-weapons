@@ -95,6 +95,7 @@ You can also edit the configs manually. Almost everything can be tweaked to your
 ### Known Issues
 
 - Quantity doesn't seem to be exact, rather approximate. This will hopefully be locked down and fixed in time.
+- If you use [CLLC](https://valheim.thunderstore.io/package/Smoothbrain/CreatureLevelAndLootControl/), the minotaur might drop a bazillion axes. Check your CLLC configuration to stop it from changing the minotaur's drops. Its drop is set to be one, and only one, axe.
 
 ## Source
 
@@ -119,6 +120,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+31/08/2023 | 4.2.1 | update CVL & readme
 23/08/2023 | 4.2.0 | update for new valheim patch
 21/07/2023 | 4.1.0 | add two special attacks to minotaur; fix blade of olympus to be properly one handed
 19/07/2023 | 4.0.0 | Make Blade of Olympus a one handed weapon; add Greatsword of Olympus as 2h weapon with appropriate stats; make dynamic Minotaur icon on minimap; streamline configs

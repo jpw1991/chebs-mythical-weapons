@@ -25,14 +25,14 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.2.0";
+        public const string PluginVersion = "4.2.1";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly System.Version ChebsValheimLibraryVersion = new("2.3.0");
+        public readonly System.Version ChebsValheimLibraryVersion = new("2.3.1");
 
-        private readonly Harmony harmony = new(PluginGuid);
+        private readonly Harmony _harmony = new(PluginGuid);
 
         // if set to true, the particle effects that for some reason hurt radeon are dynamically disabled
         public static ConfigEntry<bool> RadeonFriendly;
@@ -55,7 +55,7 @@ namespace ChebsMythicalWeapons
 
             CreateConfigValues();
             LoadAssetBundle();
-            harmony.PatchAll();
+            _harmony.PatchAll();
 
             SetupWatcher();
         }
