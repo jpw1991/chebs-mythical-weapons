@@ -4,7 +4,8 @@ DEBUGDIR=ChebsMythicalWeapons/bin/Debug
 DLL=$DEBUGDIR/ChebsMythicalWeapons.dll
 LIB=../chebs-valheim-library/ChebsValheimLibrary/bin/Release/ChebsValheimLibrary.dll
 BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
-PLUGINS=/home/$USER/.local/share/Steam/steamapps/common/Valheim/BepInEx/plugins
+#PLUGINS=/home/$USER/.local/share/Steam/steamapps/common/Valheim/BepInEx/plugins
+PLUGINS=/home/$USER/.config/r2modmanPlus-local/Valheim/profiles/cheb-development/BepInEx/plugins/ChebGonaz-ChebsMythicalWeapons
 TRANSLATIONS=Translations
 
 # Check that source files exist and are readable

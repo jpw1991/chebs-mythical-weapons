@@ -16,14 +16,12 @@ namespace ChebsMythicalWeapons.Items
         public override string NameLocalization => "$chebgonaz_bowofapollo";
         public override string DescriptionLocalization => "$chebgonaz_bowofapollo_desc";
 
-        public static ConfigEntry<float> ProjectileGravity;
-
-        public static ConfigEntry<float> Knockback,
-            BackstabBonus,
-            PiercingDamage,
-            FireDamage,
-            BonusPiercingDamagePerLevel,
-            BonusFireDamagePerLevel;
+        public static ConfigEntry<float> ProjectileGravity,
+            ProjectileVelocity, ProjectileVelocityMin,
+            ProjectileAccuracy, ProjectileAccuracyMin,
+            Knockback, BackstabBonus,
+            PiercingDamage, FireDamage,
+            BonusPiercingDamagePerLevel, BonusFireDamagePerLevel;
 
         public override void CreateConfigs(BaseUnityPlugin plugin)
         {
@@ -56,7 +54,29 @@ namespace ChebsMythicalWeapons.Items
 
             ProjectileGravity = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileGravity",
                 5f, new ConfigDescription(
-                    "Replace projectile gravity for projectiles leaving the bow to manipulate the drop. For an arrow that flies straight and true, use 0; for default arrow behaviour, use 5.",
+                    "Replace projectile gravity for projectiles leaving the bow to manipulate the drop. For an arrow that flies straight and true, use 0; for default arrow behaviour, use 5. This, along with projectile velocity, influences the drop of the arrow as it flies.",
+                    null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            ProjectileVelocity = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileVelocity",
+                60f, new ConfigDescription(
+                    "Bow's projectile velocity value. This is the speed of the projectile when it leaves the bow. This, along with projectile gravity, influences the drop of the arrow as it flies.",
+                    null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            ProjectileVelocityMin = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileVelocityMin",
+                2f, new ConfigDescription(
+                    "Bow's projectile velocity min value (I don't know what this does).",
+                    null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            ProjectileAccuracy = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileAccuracy",
+                0f, new ConfigDescription(
+                    "Bow's projectile accuracy value (I don't know what this does).",
+                    null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            ProjectileAccuracyMin = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ProjectileAccuracyMin",
+                20f, new ConfigDescription(
+                    "Bow's projectile accuracy min value (I don't know what this does).",
                     null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
@@ -96,6 +116,12 @@ namespace ChebsMythicalWeapons.Items
             itemDataShared.m_damages.m_fire = FireDamage.Value;
             itemDataShared.m_damagesPerLevel.m_pierce = BonusPiercingDamagePerLevel.Value;
             itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
+
+            itemDataShared.m_attack.m_projectileVel = ProjectileVelocity.Value;
+            itemDataShared.m_attack.m_projectileVelMin = ProjectileVelocityMin.Value;
+            
+            itemDataShared.m_attack.m_projectileAccuracy = ProjectileAccuracy.Value;
+            itemDataShared.m_attack.m_projectileAccuracyMin = ProjectileAccuracyMin.Value;
 
             #endregion
 
