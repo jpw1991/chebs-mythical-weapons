@@ -29,6 +29,8 @@ namespace ChebsMythicalWeapons.Items
             DeflectionForce,
             DeflectionForcePerLevel;
 
+        public static ConfigEntry<int> ToolTier;
+
         public override void CreateConfigs(BaseUnityPlugin plugin)
         {
             CraftingStationRequired = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "CraftingStation",
@@ -80,6 +82,11 @@ namespace ChebsMythicalWeapons.Items
                 0f, new ConfigDescription(
                     "Joyce's deflection force increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            
+            ToolTier = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ToolTier",
+                4, new ConfigDescription(
+                    "Joyce's tool tier level (determines what can be cut eg. 4 = black metal axe).", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 
         public override CustomItem GetCustomItemFromPrefab(GameObject prefab)
@@ -118,6 +125,7 @@ namespace ChebsMythicalWeapons.Items
             itemDataShared.m_damages.m_fire = FireDamage.Value;
             itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
             itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
+            itemDataShared.m_toolTier = ToolTier.Value;
 
             #endregion
 

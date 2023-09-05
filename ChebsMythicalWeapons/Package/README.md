@@ -120,6 +120,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+06/09/2023 | 4.2.3 | expose Joyce axe's tool tier to config
 03/09/2023 | 4.2.2 | expose additional bow of apollo velocity values to config
 31/08/2023 | 4.2.1 | update CVL & readme
 23/08/2023 | 4.2.0 | update for new valheim patch
