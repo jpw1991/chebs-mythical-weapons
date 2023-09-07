@@ -22,8 +22,10 @@ namespace ChebsMythicalWeapons.Items
             BackstabBonus,
             SlashDamage,
             FireDamage,
+            ChopDamage,
             BonusSlashDamagePerLevel,
             BonusFireDamagePerLevel,
+            BonusChopDamagePerLevel,
             BlockPower,
             BlockPowerPerLevel,
             DeflectionForce,
@@ -55,6 +57,10 @@ namespace ChebsMythicalWeapons.Items
                 50f, new ConfigDescription(
                     "Joyce's base spirit damage value.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            ChopDamage = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "ChopDamage",
+                100f, new ConfigDescription(
+                    "Joyce's base chop damage value.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
             BonusSlashDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)",
                 "BonusSlashDamagePerLevel",
                 20f, new ConfigDescription(
@@ -64,6 +70,11 @@ namespace ChebsMythicalWeapons.Items
                 "BonusFireDamagePerLevel",
                 0f, new ConfigDescription(
                     "Joyce's spirit damage increase per level.", null,
+                    new ConfigurationManagerAttributes { IsAdminOnly = true }));
+            BonusChopDamagePerLevel = plugin.Config.Bind($"{GetType().Name} (Server Synced)",
+                "BonusChopDamagePerLevel",
+                20f, new ConfigDescription(
+                    "Joyce's chop damage increase per level.", null,
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
 
             BlockPower = plugin.Config.Bind($"{GetType().Name} (Server Synced)", "BlockPower",
@@ -126,6 +137,8 @@ namespace ChebsMythicalWeapons.Items
             itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
             itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
             itemDataShared.m_toolTier = ToolTier.Value;
+            itemDataShared.m_damages.m_chop = ChopDamage.Value;
+            itemDataShared.m_damagesPerLevel.m_chop = BonusChopDamagePerLevel.Value;
 
             #endregion
 
