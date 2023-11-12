@@ -120,6 +120,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+12/11/2023 | 4.3.1 | Fix crash when blocking with Apollo bow
 08/09/2023 | 4.2.4 | expose Joyce axe's chop damage values to config
 06/09/2023 | 4.2.3 | expose Joyce axe's tool tier to config
 03/09/2023 | 4.2.2 | expose additional bow of apollo velocity values to config
