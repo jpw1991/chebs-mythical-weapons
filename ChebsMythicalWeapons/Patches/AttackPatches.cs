@@ -11,10 +11,11 @@ namespace ChebsMythicalWeapons.Patches
         static void FireProjectileBurst(Attack __instance)
         {
             // eliminate projectile gravity if configured to do so
-            var lastProjectile = __instance.m_weapon.m_lastProjectile;
+            var lastProjectile = __instance?.m_weapon?.m_lastProjectile;
             if (lastProjectile == null) return;
 
-            if (__instance.m_weapon.m_dropPrefab.name.Equals(ChebsMythicalWeapons.ApolloBow.ItemName))
+            var dropPrefab = __instance.m_weapon?.m_dropPrefab;
+            if (dropPrefab != null && dropPrefab.name.Equals(ChebsMythicalWeapons.ApolloBow.ItemName))
             {
                 lastProjectile.GetComponent<Projectile>().m_gravity = ApolloBowItem.ProjectileGravity.Value;
             }
