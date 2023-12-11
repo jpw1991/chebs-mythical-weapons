@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using BepInEx;
 using BepInEx.Configuration;
 using ChebsMythicalWeapons.Creatures;
@@ -25,7 +28,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.3.2";
+        public const string PluginVersion = "4.3.3";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -57,8 +60,53 @@ namespace ChebsMythicalWeapons
             LoadAssetBundle();
             _harmony.PatchAll();
 
-            SetupWatcher();
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
+                Logger.LogInfo(!attr.InitialSynchronization
+                    ? "Syncing configuration changes from server..."
+                    : "Syncing initial configuration...");
+            };
+
+            StartCoroutine(WatchConfigFile());
         }
+        
+        #region ConfigUpdate
+        private byte[] GetFileHash(string fileName)
+        {
+            var sha1 = HashAlgorithm.Create();
+            using var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            return sha1.ComputeHash(stream);
+        }
+
+        private IEnumerator WatchConfigFile()
+        {
+            var lastHash = GetFileHash(ConfigFileFullPath);
+            while (true)
+            {
+                yield return new WaitForSeconds(5);
+                var hash = GetFileHash(ConfigFileFullPath);
+                if (!hash.SequenceEqual(lastHash))
+                {
+                    lastHash = hash;
+                    ReadConfigValues();
+                }
+            }
+        }
+        
+        private void ReadConfigValues()
+        {
+            try
+            {
+                var adminOrLocal = ZNet.instance.IsServerInstance() || ZNet.instance.IsLocalInstance();
+                Logger.LogInfo($"Read updated config values (admin/local={adminOrLocal})");
+                if (adminOrLocal) Config.Reload();
+            }
+            catch (Exception exc)
+            {
+                Logger.LogError($"There was an issue loading your {ConfigFileName}: {exc}");
+            }
+        }
+        #endregion
 
         private void CreateConfigValues()
         {
@@ -99,33 +147,6 @@ namespace ChebsMythicalWeapons
             MinotaurCreature.CreateConfigs(this);
 
             #endregion
-        }
-
-        private void SetupWatcher()
-        {
-            FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
-            watcher.Changed += ReadConfigValues;
-            watcher.Created += ReadConfigValues;
-            watcher.Renamed += ReadConfigValues;
-            watcher.Error += (sender, e) => Jotunn.Logger.LogError($"Error watching for config changes: {e}");
-            watcher.IncludeSubdirectories = true;
-            watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
-            watcher.EnableRaisingEvents = true;
-        }
-
-        private void ReadConfigValues(object sender, FileSystemEventArgs e)
-        {
-            if (!File.Exists(ConfigFileFullPath)) return;
-            try
-            {
-                Logger.LogInfo("Read updated config values");
-                Config.Reload();
-            }
-            catch (Exception exc)
-            {
-                Logger.LogError($"There was an issue loading your {ConfigFileName}: {exc}");
-                Logger.LogError("Please check your config entries for spelling and format!");
-            }
         }
 
         private void LoadAssetBundle()
