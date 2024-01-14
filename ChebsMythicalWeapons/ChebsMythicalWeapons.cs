@@ -28,12 +28,12 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.3.3";
+        public const string PluginVersion = "4.3.4";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly System.Version ChebsValheimLibraryVersion = new("2.4.0");
+        public readonly System.Version ChebsValheimLibraryVersion = new("2.5.2");
 
         private readonly Harmony _harmony = new(PluginGuid);
 
