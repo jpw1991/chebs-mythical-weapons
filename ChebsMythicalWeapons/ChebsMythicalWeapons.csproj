@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creatures\MinotaurCreature.cs" />
+    <Compile Include="Items\AegisItem.cs" />
     <Compile Include="Items\ApolloBowItem.cs" />
     <Compile Include="Items\BladeOfOlympusItem.cs" />
     <Compile Include="Items\ExcaliburItem.cs" />

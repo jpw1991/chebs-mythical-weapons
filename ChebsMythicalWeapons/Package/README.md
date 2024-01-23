@@ -120,6 +120,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+23/01/2023 | 4.4.0 | Add Aegis for evaluation
 15/01/2023 | 4.3.4 | Update CVL and Jotunn
 30/11/2023 | 4.3.3 | Fix issue of configs not syncing reliably
 12/11/2023 | 4.3.1 | Fix crash when blocking with Apollo bow

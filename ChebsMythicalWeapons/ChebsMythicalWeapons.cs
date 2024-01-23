@@ -28,7 +28,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.3.4";
+        public const string PluginVersion = "4.4.0";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -48,6 +48,7 @@ namespace ChebsMythicalWeapons
         public static BladeOfOlympusItem BladeOfOlympus = new();
         public static GreatswordOfOlympusItem GreatswordOfOlympus = new();
         public static JoyceItem Joyce = new();
+        public static AegisItem Aegis = new();
 
         private void Awake()
         {
@@ -146,6 +147,10 @@ namespace ChebsMythicalWeapons
             Joyce.CreateConfigs(this);
             MinotaurCreature.CreateConfigs(this);
 
+            #endregion
+            
+            #region Aegis
+            Aegis.CreateConfigs(this);
             #endregion
         }
 
@@ -262,6 +267,12 @@ namespace ChebsMythicalWeapons
                     }
 
                     CreatureManager.Instance.AddCreature(customCreature);
+                }
+                {
+                    // Aegis
+                    var prefab = Base.LoadPrefabFromBundle(Aegis.PrefabName, chebgonazAssetBundle,
+                        RadeonFriendly.Value);
+                    ItemManager.Instance.AddItem(Aegis.GetCustomItemFromPrefab(prefab));
                 }
             }
             catch (Exception ex)
