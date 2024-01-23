@@ -37,7 +37,7 @@ jobs:
           echo "DESCRIPTION=${description}" >> $GITHUB_ENV
   publish:
     runs-on: ubuntu-latest
-    needs: verify
+    needs: verify-manifest
     steps:
       - uses: actions/checkout@v3
       - run: wget ${{env.dlpath}}/${{github.ref_name}}/${{env.name}}.${{github.ref_name}}.zip
