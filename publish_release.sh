@@ -1,8 +1,8 @@
 #!/bin/bash
 
-RELEASEDIR=ChebsMythicalWeapons/bin/Release
+RELEASEDIR=ChebsMythicalWeapons/bin/Release/net48
 DLL=$RELEASEDIR/ChebsMythicalWeapons.dll
-LIB=../chebs-valheim-library/ChebsValheimLibrary/bin/Release/ChebsValheimLibrary.dll
+LIB=$RELEASEDIR/ChebsValheimLibrary.dll
 BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=ChebsMythicalWeapons/Package/plugins
 README=README.md
