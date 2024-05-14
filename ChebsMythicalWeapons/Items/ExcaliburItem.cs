@@ -75,7 +75,7 @@ namespace ChebsMythicalWeapons.Items
                     new ConfigurationManagerAttributes { IsAdminOnly = true }));
         }
 
-        public override CustomItem GetCustomItemFromPrefab(GameObject prefab)
+        public override CustomItem GetCustomItemFromPrefab(GameObject prefab, bool fixReferences = true)
         {
             var config = new ItemConfig
             {
