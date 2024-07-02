@@ -33,7 +33,7 @@ namespace ChebsMythicalWeapons
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
 
-        public readonly System.Version ChebsValheimLibraryVersion = new("2.6.1");
+        public readonly System.Version ChebsValheimLibraryVersion = new("2.6.2");
 
         private readonly Harmony _harmony = new(PluginGuid);
 
@@ -171,7 +171,8 @@ namespace ChebsMythicalWeapons
                     var swordInTheStonePickablePrefab =
                         chebgonazAssetBundle.LoadAsset<GameObject>(SwordInTheStonePickable.PickablePrefabName);
                     swordInTheStonePickablePrefab.AddComponent<SwordInTheStonePickable>();
-                    PrefabManager.Instance.AddPrefab(swordInTheStonePickablePrefab);
+                    var swordInTheStoneCustomPrefab = new CustomPrefab(swordInTheStonePickablePrefab, true);
+                    PrefabManager.Instance.AddPrefab(swordInTheStoneCustomPrefab);
 
                     // stone location
                     var swordInTheStoneLocationPrefab =
@@ -186,7 +187,7 @@ namespace ChebsMythicalWeapons
                         ClearArea = true,
                     };
                     var customLocation =
-                        new CustomLocation(swordInTheStoneLocationPrefab, false, swordInTheStoneConfig);
+                        new CustomLocation(swordInTheStoneLocationPrefab, true, swordInTheStoneConfig);
                     ZoneManager.Instance.AddCustomLocation(customLocation);
                 }
                 {
@@ -199,7 +200,8 @@ namespace ChebsMythicalWeapons
                     var bowPickablePrefab =
                         chebgonazAssetBundle.LoadAsset<GameObject>(ApolloStatuePickable.PickablePrefabName);
                     bowPickablePrefab.AddComponent<ApolloStatuePickable>();
-                    PrefabManager.Instance.AddPrefab(bowPickablePrefab);
+                    var bowPickableCustomPrefab = new CustomPrefab(bowPickablePrefab, true);
+                    PrefabManager.Instance.AddPrefab(bowPickableCustomPrefab);
 
                     // bow location
                     var bowLocationPrefab = chebgonazAssetBundle.LoadAsset<GameObject>(ApolloStatueLocation.PrefabName);
@@ -212,7 +214,7 @@ namespace ChebsMythicalWeapons
                         ExteriorRadius = 2f,
                         ClearArea = true,
                     };
-                    var customLocation = new CustomLocation(bowLocationPrefab, false, config);
+                    var customLocation = new CustomLocation(bowLocationPrefab, true, config);
                     ZoneManager.Instance.AddCustomLocation(customLocation);
                 }
                 {
