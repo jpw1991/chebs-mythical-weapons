@@ -81,7 +81,7 @@ namespace ChebsMythicalWeapons.Items
                 CraftingStationLevel
             );
 
-            var customItem = new CustomItem(prefab, false, config);
+            var customItem = new CustomItem(prefab, fixReferences, config);
             if (customItem.ItemPrefab == null)
             {
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");

@@ -3,7 +3,7 @@
 RELEASEDIR=ChebsMythicalWeapons/bin/Release/net48
 DLL=$RELEASEDIR/ChebsMythicalWeapons.dll
 LIB=$RELEASEDIR/ChebsValheimLibrary.dll
-BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
+BUN=chebs-mythical-weapons-unity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=ChebsMythicalWeapons/Package/plugins
 README=README.md
 TRANSLATIONS=Translations
