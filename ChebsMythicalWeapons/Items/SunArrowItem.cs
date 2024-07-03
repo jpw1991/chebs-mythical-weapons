@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -99,6 +100,27 @@ namespace ChebsMythicalWeapons.Items
             #endregion
 
             return customItem;
+        }
+        
+        public void UpdateItemValues()
+        {
+            var prefab = ZNetScene.instance?.GetPrefab(ItemName) ?? PrefabManager.Instance.GetPrefab(ItemName);
+            if (prefab == null)
+            {
+                Logger.LogError($"Failed to update item values: prefab with name {ItemName} is null");
+                return;
+            }
+
+            var item = prefab.GetComponent<ItemDrop>();
+            var itemDataShared = item.m_itemData.m_shared;
+            
+            #region AttackSettings
+
+            itemDataShared.m_attackForce = Knockback.Value;
+            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
+            itemDataShared.m_damages.m_fire = FireDamage.Value;
+
+            #endregion
         }
     }
 }

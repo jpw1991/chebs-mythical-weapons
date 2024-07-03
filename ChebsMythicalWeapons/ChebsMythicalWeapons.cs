@@ -28,7 +28,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.5.0";
+        public const string PluginVersion = "4.5.1";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -70,7 +70,7 @@ namespace ChebsMythicalWeapons
 
             StartCoroutine(WatchConfigFile());
         }
-        
+
         #region ConfigUpdate
         private byte[] GetFileHash(string fileName)
         {
@@ -101,12 +101,50 @@ namespace ChebsMythicalWeapons
                 var adminOrLocal = ZNet.instance.IsServerInstance() || ZNet.instance.IsLocalInstance();
                 Logger.LogInfo($"Read updated config values (admin/local={adminOrLocal})");
                 if (adminOrLocal) Config.Reload();
+                // apply new values from config to the weapons
+                Aegis.UpdateItemValues();
+                ApolloBow.UpdateItemValues();
+                BladeOfOlympus.UpdateItemValues();
+                Excalibur.UpdateItemValues();
+                GreatswordOfOlympus.UpdateItemValues();
+                Joyce.UpdateItemValues();
+                SunArrow.UpdateItemValues();
+                // update whatever stuff the player's currently got equipped/in inventory
+                UpdateItemsInScene();
             }
             catch (Exception exc)
             {
                 Logger.LogError($"There was an issue loading your {ConfigFileName}: {exc}");
             }
         }
+        
+        private void UpdateItemsInScene()
+        {
+            // update local player's equipment
+            if (Player.m_localPlayer == null)
+            {
+                Logger.LogWarning("Attempted to update items in scene with new values from config but player is " +
+                                  "null. This is ok if you're in the menus or something.");
+                return;
+            }
+            var playerInventory = Player.m_localPlayer.GetInventory();
+            if (playerInventory?.m_inventory == null)
+            {
+                Logger.LogError("Failed to get player inventory.");
+                return;
+            }
+            foreach (var item in playerInventory.m_inventory)
+            {
+                var updatedItem = PrefabManager.Instance.GetPrefab(item.m_dropPrefab?.name);
+                if (updatedItem == null)
+                {
+                    Logger.LogInfo("Failed to update because item is null");
+                    continue;
+                }
+                item.m_shared = updatedItem.GetComponent<ItemDrop>().m_itemData.m_shared;
+            }
+        }
+        
         #endregion
 
         private void CreateConfigValues()

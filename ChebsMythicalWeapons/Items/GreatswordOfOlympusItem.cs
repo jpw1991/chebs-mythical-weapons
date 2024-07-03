@@ -4,6 +4,7 @@ using ChebsValheimLibrary.Common;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -161,6 +162,39 @@ namespace ChebsMythicalWeapons.Items
             #endregion
 
             return customItem;
+        }
+        
+        public void UpdateItemValues()
+        {
+            var prefab = ZNetScene.instance?.GetPrefab(ItemName) ?? PrefabManager.Instance.GetPrefab(ItemName);
+            if (prefab == null)
+            {
+                Logger.LogError($"Failed to update item values: prefab with name {ItemName} is null");
+                return;
+            }
+
+            var item = prefab.GetComponent<ItemDrop>();
+            var itemDataShared = item.m_itemData.m_shared;
+            
+            #region AttackSettings
+
+            itemDataShared.m_attackForce = Knockback.Value;
+            itemDataShared.m_backstabBonus = BackstabBonus.Value;
+            itemDataShared.m_damages.m_slash = SlashDamage.Value;
+            itemDataShared.m_damages.m_lightning = LightningDamage.Value;
+            itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
+            itemDataShared.m_damagesPerLevel.m_lightning = BonusLightningDamagePerLevel.Value;
+
+            #endregion
+
+            #region ShieldSettings
+
+            itemDataShared.m_blockPower = BlockPower.Value; // block force
+            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
+            itemDataShared.m_deflectionForce = DeflectionForce.Value;
+            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
+
+            #endregion
         }
     }
 }
