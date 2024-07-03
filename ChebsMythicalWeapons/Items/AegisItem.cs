@@ -5,6 +5,7 @@ using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using SoftReferenceableAssets;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -75,17 +76,6 @@ namespace ChebsMythicalWeapons.Items
             {
                 Name = NameLocalization,
                 Description = DescriptionLocalization,
-                CraftingStation = InternalName.GetName(CraftingTable.Forge),
-                Requirements = new[]
-                {
-                    // add an upgrade amount of 20 silver per level of Aegis
-                    new RequirementConfig()
-                    {
-                        Amount = 20,
-                        AmountPerLevel = 20,
-                        Item = "Bronze",
-                    }
-                },
             };
             
             if (string.IsNullOrEmpty(CraftingCost.Value))
@@ -108,6 +98,8 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+
+            itemDataShared.m_maxQuality = 5;
 
             #region ShieldSettings
 

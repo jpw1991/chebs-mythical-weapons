@@ -103,6 +103,8 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+            
+            itemDataShared.m_maxQuality = 5;
 
             #region AttackSettings
 
