@@ -159,5 +159,61 @@ namespace ChebsMythicalWeapons.Items
 
             #endregion
         }
+        
+        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        {
+            var itemQuality = selectedRecipe.Value.m_quality;
+            switch (itemQuality)
+            {
+                case 1:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 40,
+                        }
+                    };
+                    break;
+                case 2:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 20,
+                        }
+                    };
+                    break;
+                case 3:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 13,
+                        }
+                    };
+                    break;
+                case 4:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Flametal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 9,
+                        }
+                    };
+                    break;
+                default: // initial state = 1, or unhandled case
+                    Logger.LogWarning(
+                        $"Unhandled case in recipes (quality = {itemQuality} for ExcaliburItem), please tell Cheb.");
+                    break;
+            }
+        }
     }
 }

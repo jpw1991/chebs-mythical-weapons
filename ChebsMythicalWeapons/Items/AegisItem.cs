@@ -75,7 +75,7 @@ namespace ChebsMythicalWeapons.Items
             {
                 Name = NameLocalization,
                 Description = DescriptionLocalization,
-                // CraftingStation = InternalName.GetName(CraftingTable.Forge),
+                CraftingStation = InternalName.GetName(CraftingTable.Forge),
                 Requirements = new[]
                 {
                     // add an upgrade amount of 20 silver per level of Aegis
@@ -83,7 +83,7 @@ namespace ChebsMythicalWeapons.Items
                     {
                         Amount = 20,
                         AmountPerLevel = 20,
-                        Item = "Silver",
+                        Item = "Bronze",
                     }
                 },
             };
@@ -141,6 +141,62 @@ namespace ChebsMythicalWeapons.Items
             shared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
 
             #endregion
+        }
+
+        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        {
+            var itemQuality = selectedRecipe.Value.m_quality;
+            switch (itemQuality)
+            {
+                case 1:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 60,
+                        }
+                    };
+                    break;
+                case 2:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 30,
+                        }
+                    };
+                    break;
+                case 3:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 19,
+                        }
+                    };
+                    break;
+                case 4:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Flametal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 15,
+                        }
+                    };
+                    break;
+                default: // initial state = 1, or unhandled case
+                    Logger.LogWarning(
+                        $"Unhandled case in recipes (quality = {itemQuality} for AegisItem), please tell Cheb.");
+                    break;
+            }
         }
     }
 }

@@ -24,62 +24,17 @@ namespace ChebsMythicalWeapons.Patches
             var selectedRecipeKey = __instance.m_selectedRecipe.Key;
             if (selectedRecipeKey == null) return;
             var keyName = selectedRecipeKey.ToString();
-            if (keyName.Contains(ChebsMythicalWeapons.Excalibur.ItemName)
-                || keyName.Contains(ChebsMythicalWeapons.ApolloBow.ItemName)
-                || keyName.Contains(ChebsMythicalWeapons.Aegis.ItemName))
+            if (keyName.Contains(ChebsMythicalWeapons.Excalibur.ItemName))
             {
-                var itemQuality = __instance.m_selectedRecipe.Value.m_quality;
-                switch (itemQuality)
-                {
-                    case 1:
-                        __instance.m_selectedRecipe.Key.m_resources = new[]
-                        {
-                            new Piece.Requirement()
-                            {
-                                m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
-                                m_amount = 40,
-                                m_amountPerLevel = 40,
-                            }
-                        };
-                        break;
-                    case 2:
-                        __instance.m_selectedRecipe.Key.m_resources = new[]
-                        {
-                            new Piece.Requirement()
-                            {
-                                m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
-                                m_amount = 40,
-                                m_amountPerLevel = 20,
-                            }
-                        };
-                        break;
-                    case 3:
-                        __instance.m_selectedRecipe.Key.m_resources = new[]
-                        {
-                            new Piece.Requirement()
-                            {
-                                m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
-                                m_amount = 40,
-                                m_amountPerLevel = 13,
-                            }
-                        };
-                        break;
-                    case 4:
-                        __instance.m_selectedRecipe.Key.m_resources = new[]
-                        {
-                            new Piece.Requirement()
-                            {
-                                m_resItem = PrefabManager.Instance.GetPrefab("Flametal").GetComponent<ItemDrop>(),
-                                m_amount = 40,
-                                m_amountPerLevel = 13,
-                            }
-                        };
-                        break;
-                    default: // initial state = 1, or unhandled case
-                        Logger.LogWarning(
-                            $"Unhandled case in recipes (quality = {itemQuality} for Excalibur), please tell Cheb.");
-                        break;
-                }
+                ExcaliburItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
+            }
+            else if (keyName.Contains(ChebsMythicalWeapons.ApolloBow.ItemName))
+            {
+                ApolloBowItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
+            }
+            else if (keyName.Contains(ChebsMythicalWeapons.Aegis.ItemName))
+            {
+                AegisItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }
         }
 

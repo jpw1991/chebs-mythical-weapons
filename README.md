@@ -83,6 +83,9 @@ Detailed info in the [wiki](https://github.com/jpw1991/chebs-mythical-weapons/wi
 - Joyce Axe
 	+ Carried by custom minotaur enemy.
 	+ Deals 100 slashing damage and 50 fire damage.
+- Aegis
+	+ The shield of Athena
+	+ Crafted at the forge.
 
 ### Config
 
@@ -120,6 +123,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+03/07/2024 | 4.5.1 | Set up Aegis; add dynamic reflection of config changes to items; add a further upgrade level that takes Flametal
 25/04/2024 | 4.5.0 | Prepare for ashlands; upgrade CVL
 23/01/2023 | 4.4.0 | Add Aegis for evaluation
 15/01/2023 | 4.3.4 | Update CVL and Jotunn
