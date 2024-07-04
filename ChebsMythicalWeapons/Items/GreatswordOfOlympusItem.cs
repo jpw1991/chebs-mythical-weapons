@@ -17,7 +17,7 @@ namespace ChebsMythicalWeapons.Items
         public override string NameLocalization => "$chebgonaz_greatswordofolympus";
         public override string DescriptionLocalization => "$chebgonaz_greatswordofolympus_desc";
 
-        protected override string DefaultRecipe => "Flametal:20,Silver:20,BlackMetal:20,FineWood:20";
+        protected override string DefaultRecipe => "FlametalNew:20,Silver:20,BlackMetal:20,FineWood:20";
 
         public static ConfigEntry<CraftingTable> CraftingStationRequired;
         public static ConfigEntry<int> CraftingStationLevel;

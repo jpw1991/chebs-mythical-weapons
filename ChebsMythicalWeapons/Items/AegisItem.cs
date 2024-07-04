@@ -178,7 +178,7 @@ namespace ChebsMythicalWeapons.Items
                     {
                         new Piece.Requirement()
                         {
-                            m_resItem = PrefabManager.Instance.GetPrefab("Flametal").GetComponent<ItemDrop>(),
+                            m_resItem = PrefabManager.Instance.GetPrefab("FlametalNew").GetComponent<ItemDrop>(),
                             m_amount = 1,
                             m_amountPerLevel = 15,
                         }

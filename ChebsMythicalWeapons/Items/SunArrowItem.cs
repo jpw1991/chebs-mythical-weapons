@@ -15,7 +15,7 @@ namespace ChebsMythicalWeapons.Items
         public override string PrefabName => "ChebGonaz_SunArrow.prefab";
         public override string NameLocalization => "$chebgonaz_sunarrow";
         public override string DescriptionLocalization => "$chebgonaz_sunarrow_desc";
-        protected override string DefaultRecipe => "Flametal:2,FineWood:20";
+        protected override string DefaultRecipe => "FlametalNew:2,FineWood:20";
 
         public static ConfigEntry<CraftingTable> CraftingStationRequired;
         public static ConfigEntry<int> CraftingStationLevel;
