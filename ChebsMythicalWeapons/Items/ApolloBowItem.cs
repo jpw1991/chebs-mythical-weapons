@@ -107,26 +107,8 @@ namespace ChebsMythicalWeapons.Items
                 return null;
             }
 
-            var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
-            
-            itemDataShared.m_maxQuality = 5;
-
-            #region AttackSettings
-
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_pierce = BonusPiercingDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
-
-            itemDataShared.m_attack.m_projectileVel = ProjectileVelocity.Value;
-            itemDataShared.m_attack.m_projectileVelMin = ProjectileVelocityMin.Value;
-            
-            itemDataShared.m_attack.m_projectileAccuracy = ProjectileAccuracy.Value;
-            itemDataShared.m_attack.m_projectileAccuracyMin = ProjectileAccuracyMin.Value;
-
-            #endregion
+            var shared = customItem.ItemDrop.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
 
             return customItem;
         }
@@ -141,22 +123,28 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var item = prefab.GetComponent<ItemDrop>();
-            var itemDataShared = item.m_itemData.m_shared;
-            
+            var shared = item.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
+        }
+
+        private void SetItemDataShared(ref ItemDrop.ItemData.SharedData shared)
+        {
+            shared.m_maxQuality = 5;
+
             #region AttackSettings
 
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_pierce = BonusPiercingDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
+            shared.m_attackForce = Knockback.Value;
+            shared.m_backstabBonus = BackstabBonus.Value;
+            shared.m_damages.m_pierce = PiercingDamage.Value;
+            shared.m_damages.m_fire = FireDamage.Value;
+            shared.m_damagesPerLevel.m_pierce = BonusPiercingDamagePerLevel.Value;
+            shared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
 
-            itemDataShared.m_attack.m_projectileVel = ProjectileVelocity.Value;
-            itemDataShared.m_attack.m_projectileVelMin = ProjectileVelocityMin.Value;
+            shared.m_attack.m_projectileVel = ProjectileVelocity.Value;
+            shared.m_attack.m_projectileVelMin = ProjectileVelocityMin.Value;
             
-            itemDataShared.m_attack.m_projectileAccuracy = ProjectileAccuracy.Value;
-            itemDataShared.m_attack.m_projectileAccuracyMin = ProjectileAccuracyMin.Value;
+            shared.m_attack.m_projectileAccuracy = ProjectileAccuracy.Value;
+            shared.m_attack.m_projectileAccuracyMin = ProjectileAccuracyMin.Value;
 
             #endregion
         }

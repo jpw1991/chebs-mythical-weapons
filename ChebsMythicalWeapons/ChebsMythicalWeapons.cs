@@ -28,7 +28,7 @@ namespace ChebsMythicalWeapons
     {
         public const string PluginGuid = "com.chebgonaz.chebsmythicalweapons";
         public const string PluginName = "ChebsMythicalWeapons";
-        public const string PluginVersion = "4.5.2";
+        public const string PluginVersion = "4.5.3";
 
         private const string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
@@ -103,12 +103,19 @@ namespace ChebsMythicalWeapons
                 if (adminOrLocal) Config.Reload();
                 // apply new values from config to the weapons
                 Aegis.UpdateItemValues();
+                Aegis.UpdateRecipe();
                 ApolloBow.UpdateItemValues();
+                ApolloBow.UpdateRecipe();
                 BladeOfOlympus.UpdateItemValues();
+                BladeOfOlympus.UpdateRecipe();
                 Excalibur.UpdateItemValues();
+                Excalibur.UpdateRecipe();
                 GreatswordOfOlympus.UpdateItemValues();
+                GreatswordOfOlympus.UpdateRecipe();
                 Joyce.UpdateItemValues();
+                Joyce.UpdateRecipe();
                 SunArrow.UpdateItemValues();
+                SunArrow.UpdateRecipe();
                 // update whatever stuff the player's currently got equipped/in inventory
                 UpdateItemsInScene();
             }

@@ -127,30 +127,8 @@ namespace ChebsMythicalWeapons.Items
                 return null;
             }
 
-            var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
-
-            #region AttackSettings
-
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_slash = SlashDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
-            itemDataShared.m_toolTier = ToolTier.Value;
-            itemDataShared.m_damages.m_chop = ChopDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_chop = BonusChopDamagePerLevel.Value;
-
-            #endregion
-
-            #region ShieldSettings
-
-            itemDataShared.m_blockPower = BlockPower.Value; // block force
-            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
-            itemDataShared.m_deflectionForce = DeflectionForce.Value;
-            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
-
-            #endregion
+            var shared = customItem.ItemDrop.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
 
             return customItem;
         }
@@ -165,30 +143,92 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var item = prefab.GetComponent<ItemDrop>();
-            var itemDataShared = item.m_itemData.m_shared;
-            
+            var shared = item.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
+        }
+
+        private void SetItemDataShared(ref ItemDrop.ItemData.SharedData shared)
+        {
+            shared.m_maxQuality = 5;
+
             #region AttackSettings
 
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_slash = SlashDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
-            itemDataShared.m_toolTier = ToolTier.Value;
-            itemDataShared.m_damages.m_chop = ChopDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_chop = BonusChopDamagePerLevel.Value;
+            shared.m_attackForce = Knockback.Value;
+            shared.m_backstabBonus = BackstabBonus.Value;
+            shared.m_damages.m_slash = SlashDamage.Value;
+            shared.m_damages.m_fire = FireDamage.Value;
+            shared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
+            shared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
+            shared.m_toolTier = ToolTier.Value;
+            shared.m_damages.m_chop = ChopDamage.Value;
+            shared.m_damagesPerLevel.m_chop = BonusChopDamagePerLevel.Value;
 
             #endregion
 
             #region ShieldSettings
 
-            itemDataShared.m_blockPower = BlockPower.Value; // block force
-            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
-            itemDataShared.m_deflectionForce = DeflectionForce.Value;
-            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
+            shared.m_blockPower = BlockPower.Value; // block force
+            shared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
+            shared.m_deflectionForce = DeflectionForce.Value;
+            shared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
 
             #endregion
+        }
+        
+        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        {
+            var itemQuality = selectedRecipe.Value.m_quality;
+            switch (itemQuality)
+            {
+                case 1:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 60,
+                        }
+                    };
+                    break;
+                case 2:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 30,
+                        }
+                    };
+                    break;
+                case 3:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 19,
+                        }
+                    };
+                    break;
+                case 4:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("FlametalNew").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 15,
+                        }
+                    };
+                    break;
+                default: // initial state = 1, or unhandled case
+                    Logger.LogWarning(
+                        $"Unhandled case in recipes (quality = {itemQuality} for AegisItem), please tell Cheb.");
+                    break;
+            }
         }
     }
 }

@@ -97,18 +97,8 @@ namespace ChebsMythicalWeapons.Items
                 return null;
             }
 
-            var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
-
-            itemDataShared.m_maxQuality = 5;
-
-            #region ShieldSettings
-
-            itemDataShared.m_blockPower = BlockPower.Value; // block force
-            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
-            itemDataShared.m_deflectionForce = DeflectionForce.Value;
-            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
-
-            #endregion
+            var shared = customItem.ItemDrop.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
 
             return customItem;
         }
@@ -124,7 +114,13 @@ namespace ChebsMythicalWeapons.Items
 
             var item = prefab.GetComponent<ItemDrop>();
             var shared = item.m_itemData.m_shared;
-            
+            SetItemDataShared(ref shared);
+        }
+
+        private void SetItemDataShared(ref ItemDrop.ItemData.SharedData shared)
+        {
+            shared.m_maxQuality = 5;
+
             #region ShieldSettings
 
             shared.m_blockPower = BlockPower.Value; // block force

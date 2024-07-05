@@ -36,6 +36,10 @@ namespace ChebsMythicalWeapons.Patches
             {
                 AegisItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }
+            else if (keyName.Contains(ChebsMythicalWeapons.Joyce.ItemName))
+            {
+                JoyceItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
+            }
         }
 
         [HarmonyPrefix]

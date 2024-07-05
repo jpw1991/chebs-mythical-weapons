@@ -138,28 +138,9 @@ namespace ChebsMythicalWeapons.Items
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
                 return null;
             }
-
-            var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
-
-            #region AttackSettings
-
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_slash = SlashDamage.Value;
-            itemDataShared.m_damages.m_lightning = LightningDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_lightning = BonusLightningDamagePerLevel.Value;
-
-            #endregion
-
-            #region ShieldSettings
-
-            itemDataShared.m_blockPower = BlockPower.Value; // block force
-            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
-            itemDataShared.m_deflectionForce = DeflectionForce.Value;
-            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
-
-            #endregion
+            
+            var shared = customItem.ItemDrop.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
 
             return customItem;
         }
@@ -174,25 +155,31 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var item = prefab.GetComponent<ItemDrop>();
-            var itemDataShared = item.m_itemData.m_shared;
-            
+            var shared = item.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
+        }
+
+        private void SetItemDataShared(ref ItemDrop.ItemData.SharedData shared)
+        {
+            shared.m_maxQuality = 5;
+
             #region AttackSettings
 
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_backstabBonus = BackstabBonus.Value;
-            itemDataShared.m_damages.m_slash = SlashDamage.Value;
-            itemDataShared.m_damages.m_lightning = LightningDamage.Value;
-            itemDataShared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
-            itemDataShared.m_damagesPerLevel.m_lightning = BonusLightningDamagePerLevel.Value;
+            shared.m_attackForce = Knockback.Value;
+            shared.m_backstabBonus = BackstabBonus.Value;
+            shared.m_damages.m_slash = SlashDamage.Value;
+            shared.m_damages.m_lightning = LightningDamage.Value;
+            shared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
+            shared.m_damagesPerLevel.m_lightning = BonusLightningDamagePerLevel.Value;
 
             #endregion
 
             #region ShieldSettings
 
-            itemDataShared.m_blockPower = BlockPower.Value; // block force
-            itemDataShared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
-            itemDataShared.m_deflectionForce = DeflectionForce.Value;
-            itemDataShared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
+            shared.m_blockPower = BlockPower.Value; // block force
+            shared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
+            shared.m_deflectionForce = DeflectionForce.Value;
+            shared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
 
             #endregion
         }

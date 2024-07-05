@@ -123,6 +123,7 @@ You can find the github [here](https://github.com/jpw1991/chebs-mythical-weapons
 
  Date | Version | Notes 
 --- | --- | ---
+06/07/2024 | 4.5.3 | Fix problems like item costs not updating from config; add highest upgrade to Joyce axe
 04/07/2024 | 4.5.2 | Change from requiring Flametal to requiring FlametalNew
 03/07/2024 | 4.5.1 | Set up Aegis; add dynamic reflection of config changes to items; add a further upgrade level that takes Flametal
 25/04/2024 | 4.5.0 | Prepare for ashlands; upgrade CVL

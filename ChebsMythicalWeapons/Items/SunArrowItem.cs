@@ -88,16 +88,9 @@ namespace ChebsMythicalWeapons.Items
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
                 return null;
             }
-
-            var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
-
-            #region AttackSettings
-
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
-
-            #endregion
+            
+            var shared = customItem.ItemDrop.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
 
             return customItem;
         }
@@ -112,13 +105,17 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var item = prefab.GetComponent<ItemDrop>();
-            var itemDataShared = item.m_itemData.m_shared;
-            
+            var shared = item.m_itemData.m_shared;
+            SetItemDataShared(ref shared);
+        }
+
+        private void SetItemDataShared(ref ItemDrop.ItemData.SharedData shared)
+        {
             #region AttackSettings
 
-            itemDataShared.m_attackForce = Knockback.Value;
-            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
-            itemDataShared.m_damages.m_fire = FireDamage.Value;
+            shared.m_attackForce = Knockback.Value;
+            shared.m_damages.m_pierce = PiercingDamage.Value;
+            shared.m_damages.m_fire = FireDamage.Value;
 
             #endregion
         }
