@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -14,7 +15,7 @@ namespace ChebsMythicalWeapons.Items
         public override string PrefabName => "ChebGonaz_SunArrow.prefab";
         public override string NameLocalization => "$chebgonaz_sunarrow";
         public override string DescriptionLocalization => "$chebgonaz_sunarrow_desc";
-        protected override string DefaultRecipe => "Flametal:2,FineWood:20";
+        protected override string DefaultRecipe => "FlametalNew:2,FineWood:20";
 
         public static ConfigEntry<CraftingTable> CraftingStationRequired;
         public static ConfigEntry<int> CraftingStationLevel;
@@ -81,7 +82,7 @@ namespace ChebsMythicalWeapons.Items
                 CraftingStationLevel
             );
 
-            var customItem = new CustomItem(prefab, false, config);
+            var customItem = new CustomItem(prefab, fixReferences, config);
             if (customItem.ItemPrefab == null)
             {
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
@@ -99,6 +100,27 @@ namespace ChebsMythicalWeapons.Items
             #endregion
 
             return customItem;
+        }
+        
+        public void UpdateItemValues()
+        {
+            var prefab = ZNetScene.instance?.GetPrefab(ItemName) ?? PrefabManager.Instance.GetPrefab(ItemName);
+            if (prefab == null)
+            {
+                Logger.LogError($"Failed to update item values: prefab with name {ItemName} is null");
+                return;
+            }
+
+            var item = prefab.GetComponent<ItemDrop>();
+            var itemDataShared = item.m_itemData.m_shared;
+            
+            #region AttackSettings
+
+            itemDataShared.m_attackForce = Knockback.Value;
+            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
+            itemDataShared.m_damages.m_fire = FireDamage.Value;
+
+            #endregion
         }
     }
 }

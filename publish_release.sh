@@ -3,7 +3,7 @@
 RELEASEDIR=ChebsMythicalWeapons/bin/Release/net48
 DLL=$RELEASEDIR/ChebsMythicalWeapons.dll
 LIB=$RELEASEDIR/ChebsValheimLibrary.dll
-BUN=../chebs-necromancy/ChebsNecromancyUnity/Assets/AssetBundles/chebsmythicalweapons
+BUN=chebs-mythical-weapons-unity/Assets/AssetBundles/chebsmythicalweapons
 PLUGINS=ChebsMythicalWeapons/Package/plugins
 README=README.md
 TRANSLATIONS=Translations
@@ -49,7 +49,6 @@ cp -f "$README" "$PLUGINS/../README.md" || { echo "Error: Failed to copy $README
 cp -rf "$TRANSLATIONS" "$PLUGINS/"  || { echo "Error: Failed to copy Translations"; exit 1; }
 cp -f "$LIB" "$PLUGINS" || { echo "Error: Failed to copy $LIB"; exit 1; }
 cp -f "$BUN" "$PLUGINS" || { echo "Error: Failed to copy $BUN"; exit 1; }
-cp -f "$BUN.manifest" "$PLUGINS" || { echo "Error: Failed to copy $BUN.manifest"; exit 1; }
 
 ZIPDESTINATION="../bin/Release/ChebsMythicalWeapons.$VERSION.zip"
 

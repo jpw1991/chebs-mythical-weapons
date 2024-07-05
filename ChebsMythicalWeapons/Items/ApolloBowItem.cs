@@ -4,6 +4,7 @@ using ChebsValheimLibrary.Common;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -99,7 +100,7 @@ namespace ChebsMythicalWeapons.Items
                 },
             };
 
-            var customItem = new CustomItem(prefab, false, config);
+            var customItem = new CustomItem(prefab, fixReferences, config);
             if (customItem.ItemPrefab == null)
             {
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
@@ -107,6 +108,8 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+            
+            itemDataShared.m_maxQuality = 5;
 
             #region AttackSettings
 
@@ -126,6 +129,92 @@ namespace ChebsMythicalWeapons.Items
             #endregion
 
             return customItem;
+        }
+        
+        public void UpdateItemValues()
+        {
+            var prefab = ZNetScene.instance?.GetPrefab(ItemName) ?? PrefabManager.Instance.GetPrefab(ItemName);
+            if (prefab == null)
+            {
+                Logger.LogError($"Failed to update item values: prefab with name {ItemName} is null");
+                return;
+            }
+
+            var item = prefab.GetComponent<ItemDrop>();
+            var itemDataShared = item.m_itemData.m_shared;
+            
+            #region AttackSettings
+
+            itemDataShared.m_attackForce = Knockback.Value;
+            itemDataShared.m_backstabBonus = BackstabBonus.Value;
+            itemDataShared.m_damages.m_pierce = PiercingDamage.Value;
+            itemDataShared.m_damages.m_fire = FireDamage.Value;
+            itemDataShared.m_damagesPerLevel.m_pierce = BonusPiercingDamagePerLevel.Value;
+            itemDataShared.m_damagesPerLevel.m_fire = BonusFireDamagePerLevel.Value;
+
+            itemDataShared.m_attack.m_projectileVel = ProjectileVelocity.Value;
+            itemDataShared.m_attack.m_projectileVelMin = ProjectileVelocityMin.Value;
+            
+            itemDataShared.m_attack.m_projectileAccuracy = ProjectileAccuracy.Value;
+            itemDataShared.m_attack.m_projectileAccuracyMin = ProjectileAccuracyMin.Value;
+
+            #endregion
+        }
+        
+        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        {
+            var itemQuality = selectedRecipe.Value.m_quality;
+            switch (itemQuality)
+            {
+                case 1:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 40,
+                        }
+                    };
+                    break;
+                case 2:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 20,
+                        }
+                    };
+                    break;
+                case 3:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 13,
+                        }
+                    };
+                    break;
+                case 4:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("FlametalNew").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 9,
+                        }
+                    };
+                    break;
+                default: // initial state = 1, or unhandled case
+                    Logger.LogWarning(
+                        $"Unhandled case in recipes (quality = {itemQuality} for ApolloBowItem), please tell Cheb.");
+                    break;
+            }
         }
     }
 }

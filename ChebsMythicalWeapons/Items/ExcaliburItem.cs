@@ -4,6 +4,7 @@ using ChebsValheimLibrary.Common;
 using ChebsValheimLibrary.Items;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn.Managers;
 using UnityEngine;
 using Logger = Jotunn.Logger;
 
@@ -94,7 +95,7 @@ namespace ChebsMythicalWeapons.Items
                 },
             };
 
-            var customItem = new CustomItem(prefab, false, config);
+            var customItem = new CustomItem(prefab, fixReferences, config);
             if (customItem.ItemPrefab == null)
             {
                 Logger.LogError($"GetCustomItemFromPrefab: {PrefabName}'s ItemPrefab is null!");
@@ -102,6 +103,8 @@ namespace ChebsMythicalWeapons.Items
             }
 
             var itemDataShared = customItem.ItemDrop.m_itemData.m_shared;
+            
+            itemDataShared.m_maxQuality = 5;
 
             #region AttackSettings
 
@@ -124,6 +127,95 @@ namespace ChebsMythicalWeapons.Items
             #endregion
 
             return customItem;
+        }
+        
+        public void UpdateItemValues()
+        {
+            var prefab = ZNetScene.instance?.GetPrefab(ItemName) ?? PrefabManager.Instance.GetPrefab(ItemName);
+            if (prefab == null)
+            {
+                Logger.LogError($"Failed to update item values: prefab with name {ItemName} is null");
+                return;
+            }
+
+            var item = prefab.GetComponent<ItemDrop>();
+            var shared = item.m_itemData.m_shared;
+            
+            #region AttackSettings
+
+            shared.m_attackForce = Knockback.Value;
+            shared.m_backstabBonus = BackstabBonus.Value;
+            shared.m_damages.m_slash = SlashDamage.Value;
+            shared.m_damages.m_spirit = SpiritDamage.Value;
+            shared.m_damagesPerLevel.m_slash = BonusSlashDamagePerLevel.Value;
+            shared.m_damagesPerLevel.m_spirit = BonusSpiritDamagePerLevel.Value;
+
+            #endregion
+
+            #region ShieldSettings
+
+            shared.m_blockPower = BlockPower.Value; // block force
+            shared.m_blockPowerPerLevel = BlockPowerPerLevel.Value;
+            shared.m_deflectionForce = DeflectionForce.Value;
+            shared.m_deflectionForcePerLevel = DeflectionForcePerLevel.Value;
+
+            #endregion
+        }
+        
+        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        {
+            var itemQuality = selectedRecipe.Value.m_quality;
+            switch (itemQuality)
+            {
+                case 1:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Iron").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 40,
+                        }
+                    };
+                    break;
+                case 2:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("Silver").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 20,
+                        }
+                    };
+                    break;
+                case 3:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("BlackMetal").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 13,
+                        }
+                    };
+                    break;
+                case 4:
+                    selectedRecipe.Key.m_resources = new[]
+                    {
+                        new Piece.Requirement()
+                        {
+                            m_resItem = PrefabManager.Instance.GetPrefab("FlametalNew").GetComponent<ItemDrop>(),
+                            m_amount = 1,
+                            m_amountPerLevel = 9,
+                        }
+                    };
+                    break;
+                default: // initial state = 1, or unhandled case
+                    Logger.LogWarning(
+                        $"Unhandled case in recipes (quality = {itemQuality} for ExcaliburItem), please tell Cheb.");
+                    break;
+            }
         }
     }
 }
