@@ -21,22 +21,22 @@ namespace ChebsMythicalWeapons.Patches
             }
             if (!__instance.InUpradeTab()) return;
             // Mintymintos wants same upgrade costs for both bow and sword
-            var selectedRecipeKey = __instance.m_selectedRecipe.Key;
-            if (selectedRecipeKey == null) return;
-            var keyName = selectedRecipeKey.ToString();
-            if (keyName.Contains(ChebsMythicalWeapons.Excalibur.ItemName))
+            var selectedRecipeName = __instance.m_selectedRecipe.Recipe?.m_item?.m_itemData?.m_shared?.m_name;
+            if (selectedRecipeName == null) return;
+            if (selectedRecipeName.Contains(ChebsMythicalWeapons.Excalibur.ItemName))
             {
+                var test = __instance.m_selectedRecipe;
                 ExcaliburItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }
-            else if (keyName.Contains(ChebsMythicalWeapons.ApolloBow.ItemName))
+            else if (selectedRecipeName.Contains(ChebsMythicalWeapons.ApolloBow.ItemName))
             {
                 ApolloBowItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }
-            else if (keyName.Contains(ChebsMythicalWeapons.Aegis.ItemName))
+            else if (selectedRecipeName.Contains(ChebsMythicalWeapons.Aegis.ItemName))
             {
                 AegisItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }
-            else if (keyName.Contains(ChebsMythicalWeapons.Joyce.ItemName))
+            else if (selectedRecipeName.Contains(ChebsMythicalWeapons.Joyce.ItemName))
             {
                 JoyceItem.HandleUpgradesForSelectedRecipe(__instance.m_selectedRecipe);
             }

@@ -68,7 +68,7 @@ namespace ChebsMythicalWeapons.Creatures
         private void Awake()
         {
             if (MapMarker.Value == Minimap.PinType.None) return;
-
+            
             _pinData = Minimap.instance.AddPin(transform.position,
                 MapMarker.Value,
                 LocalizedName,

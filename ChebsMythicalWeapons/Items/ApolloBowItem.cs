@@ -149,13 +149,13 @@ namespace ChebsMythicalWeapons.Items
             #endregion
         }
         
-        public static void HandleUpgradesForSelectedRecipe(KeyValuePair<Recipe,ItemDrop.ItemData> selectedRecipe)
+        public static void HandleUpgradesForSelectedRecipe(InventoryGui.RecipeDataPair selectedRecipe)
         {
-            var itemQuality = selectedRecipe.Value.m_quality;
+            var itemQuality = selectedRecipe.Recipe.m_qualityResultAmountMultiplier;
             switch (itemQuality)
             {
                 case 1:
-                    selectedRecipe.Key.m_resources = new[]
+                    selectedRecipe.Recipe.m_resources = new[]
                     {
                         new Piece.Requirement()
                         {
@@ -166,7 +166,7 @@ namespace ChebsMythicalWeapons.Items
                     };
                     break;
                 case 2:
-                    selectedRecipe.Key.m_resources = new[]
+                    selectedRecipe.Recipe.m_resources = new[]
                     {
                         new Piece.Requirement()
                         {
@@ -177,7 +177,7 @@ namespace ChebsMythicalWeapons.Items
                     };
                     break;
                 case 3:
-                    selectedRecipe.Key.m_resources = new[]
+                    selectedRecipe.Recipe.m_resources = new[]
                     {
                         new Piece.Requirement()
                         {
@@ -188,7 +188,7 @@ namespace ChebsMythicalWeapons.Items
                     };
                     break;
                 case 4:
-                    selectedRecipe.Key.m_resources = new[]
+                    selectedRecipe.Recipe.m_resources = new[]
                     {
                         new Piece.Requirement()
                         {
